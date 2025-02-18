@@ -2,33 +2,39 @@ version: '3.8'
 
 services:
   drupal:
-    image: drupal:10
-    container_name: drupal_dev
-    restart: unless-stopped
+    image: drupal:10.4-apache  # Ensure Drupal 10.4 is used
+    container_name: drupal
+    restart: always
     ports:
       - "8080:80"
-    volumes:
-      - ./web:/var/www/html
-      - ./startup.sh:/var/www/html/startup.sh
     depends_on:
-      - db
-    environment:
-      - DRUPAL_DB_HOST=db
-      - DRUPAL_DB_USER=drupal
-      - DRUPAL_DB_PASSWORD=drupal
-      - DRUPAL_DB_NAME=drupal
-    command: ["sh", "-c", "/var/www/html/startup.sh && apache2-foreground"]
-
-  db:
-    image: mariadb:10.5
-    container_name: mariadb_dev
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=drupal
-      - MYSQL_USER=drupal
-      - MYSQL_PASSWORD=drupal
+      - mariadb
     volumes:
-      - db_data:/var/lib/mysql
+      - ./config/sync:/var/www/html/config/sync  # Persist config
+      - ./modules:/var/www/html/modules  # Persist modules
+      - ./themes:/var/www/html/themes  # Persist themes
+      - drupal_files:/var/www/html/sites/default/files  # Persist user uploads
+
+    environment:
+      - DRUPAL_DB_HOST=mariadb
+      - DRUPAL_DB_USER=${MYSQL_USER}
+      - DRUPAL_DB_PASSWORD=${MYSQL_PASSWORD}
+      - DRUPAL_DB_NAME=${MYSQL_DATABASE}
+
+  mariadb:
+    image: mariadb:10.6  # Ensure MariaDB 10.6 is used
+    container_name: mariadb
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql  # Persist database
 
 volumes:
-  db_data:
+  drupal_files:  # Stores user uploads
+  db_data:  # Stores the database
