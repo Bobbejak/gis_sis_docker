@@ -1,0 +1,5 @@
+echo "vendor/" >> .gitignore
+echo "web/core/" >> .gitignore
+echo "web/sites/default/files/" >> .gitignore
+echo "db_backups/" >> .gitignore
+echo "startup.sh" >> .gitignore
