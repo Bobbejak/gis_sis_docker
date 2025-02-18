@@ -1,0 +1,25 @@
+uuid: 7350fc48-8ca2-4b33-b454-fa1c2ed59573
+langcode: en-gb
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:22ddc84d-97d6-4c2e-a039-9354c1bd1d80'
+  module:
+    - block_content
+  theme:
+    - tailwind_theme
+id: tailwind_theme_navbranding
+theme: tailwind_theme
+region: sidebar_left
+weight: -6
+provider: null
+plugin: 'block_content:22ddc84d-97d6-4c2e-a039-9354c1bd1d80'
+settings:
+  id: 'block_content:22ddc84d-97d6-4c2e-a039-9354c1bd1d80'
+  label: 'Nav Branding'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

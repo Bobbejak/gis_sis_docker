@@ -1,0 +1,22 @@
+uuid: b7bf58e4-61db-4107-9a62-15f5755ad03b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - tailwind_theme
+_core:
+  default_config_hash: GoQIZiy5rMXjV84jm1ZoNFF3vNZKPiGr4KBbbRcoKN0
+id: tailwind_theme_local_tasks
+theme: tailwind_theme
+region: content
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

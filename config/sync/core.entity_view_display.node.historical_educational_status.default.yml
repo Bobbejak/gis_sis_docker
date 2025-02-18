@@ -1,0 +1,47 @@
+uuid: bc488832-15c3-4554-be5b-5220e4ad60e6
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.field.node.historical_educational_status.field_education_history_student
+    - field.field.node.historical_educational_status.field_education_history_year
+    - field.field.node.historical_educational_status.field_educational_history_achiev
+    - node.type.historical_educational_status
+  module:
+    - user
+id: node.historical_educational_status.default
+targetEntityType: node
+bundle: historical_educational_status
+mode: default
+content:
+  field_education_history_student:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_education_history_year:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_educational_history_achiev:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

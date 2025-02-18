@@ -1,0 +1,38 @@
+uuid: c8ac520b-3ff8-4f15-89a7-f4f888089594
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_student_photo
+    - node.type.student
+  module:
+    - image
+id: node.student.field_student_photo
+field_name: field_student_photo
+entity_type: node
+bundle: student
+label: 'Student Photo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: 250x250
+  min_resolution: ''
+  alt_field: false
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: 92b669ae-c192-4e21-8f76-c82ebf4a46aa
+    alt: ''
+    title: ''
+    width: 640
+    height: 640
+field_type: image

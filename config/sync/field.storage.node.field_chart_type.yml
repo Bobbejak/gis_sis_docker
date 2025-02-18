@@ -1,0 +1,30 @@
+uuid: 5be5e722-44f3-46e2-91f6-98f3068f363a
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_chart_type
+field_name: field_chart_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: pie
+      label: Pie
+    -
+      value: bar
+      label: Bar
+    -
+      value: line
+      label: Line
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

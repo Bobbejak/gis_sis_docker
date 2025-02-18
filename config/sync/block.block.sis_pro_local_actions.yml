@@ -1,0 +1,20 @@
+uuid: b7e87adb-b5b9-4021-a263-c3729f1b213a
+langcode: en
+status: true
+dependencies:
+  theme:
+    - sis_pro
+_core:
+  default_config_hash: R3UjKKM2MmRkL9LTVzfIq_6G44PTjesuA76I0-T5PPo
+id: sis_pro_local_actions
+theme: sis_pro
+region: content
+weight: -2
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

@@ -1,0 +1,29 @@
+uuid: 3f20f965-f50e-4924-94db-9c00283240f5
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.student_names.field_student_name
+    - paragraphs.paragraphs_type.student_names
+  module:
+    - field_layout
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: paragraph.student_names.default
+targetEntityType: paragraph
+bundle: student_names
+mode: default
+content:
+  field_student_name:
+    type: options_buttons
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

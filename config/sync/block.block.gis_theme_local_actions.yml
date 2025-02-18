@@ -1,0 +1,20 @@
+uuid: 0be92ee9-e575-4124-85a5-9b911a5192ba
+langcode: en-gb
+status: true
+dependencies:
+  theme:
+    - gis_theme
+_core:
+  default_config_hash: R3UjKKM2MmRkL9LTVzfIq_6G44PTjesuA76I0-T5PPo
+id: gis_theme_local_actions
+theme: gis_theme
+region: content
+weight: -2
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

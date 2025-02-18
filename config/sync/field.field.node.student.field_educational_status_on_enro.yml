@@ -1,0 +1,21 @@
+uuid: 066fb66e-c413-4446-8716-ca0baf3d3121
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_educational_status_on_enro
+    - node.type.student
+  module:
+    - options
+id: node.student.field_educational_status_on_enro
+field_name: field_educational_status_on_enro
+entity_type: node
+bundle: student
+label: 'Educational Status on Enrolment'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

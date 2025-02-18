@@ -1,0 +1,22 @@
+uuid: ba1ddab6-7ebb-48e2-bc09-142f96464e16
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - sis_pro
+_core:
+  default_config_hash: eZSWODSHt_IQOXHMN2rfNiseMKq1hFtph9EQTOFy1zg
+id: sis_pro_breadcrumbs
+theme: sis_pro
+region: breadcrumbs
+weight: -6
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

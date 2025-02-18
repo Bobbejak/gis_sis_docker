@@ -1,0 +1,22 @@
+uuid: fd49d19b-b596-4275-aefd-bac11354ecd1
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bootstrap5_datatables
+_core:
+  default_config_hash: GoQIZiy5rMXjV84jm1ZoNFF3vNZKPiGr4KBbbRcoKN0
+id: bootstrap5_datatables_local_tasks
+theme: bootstrap5_datatables
+region: content
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

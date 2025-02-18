@@ -1,0 +1,64 @@
+uuid: f25bbfab-3022-4f4f-9c1e-8415bc8196ff
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.test.field_academic_year
+    - field.field.node.test.field_current_level
+    - field.field.node.test.field_maximum_score
+    - field.field.node.test.field_subject
+    - field.field.node.test.field_test_allow_only_one
+    - field.field.node.test.field_test_date
+    - field.field.node.test.field_test_period
+    - field.field.node.test.field_test_type
+    - node.type.test
+  module:
+    - field_layout
+    - layout_builder
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+  layout_builder:
+    enabled: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          f257c78f-d349-4807-bd6f-663ed914b83c:
+            uuid: f257c78f-d349-4807-bd6f-663ed914b83c
+            region: content
+            configuration:
+              id: 'extra_field_block:node:test:links'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: node.test.teaser
+targetEntityType: node
+bundle: test
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_academic_year: true
+  field_current_level: true
+  field_maximum_score: true
+  field_subject: true
+  field_test_allow_only_one: true
+  field_test_date: true
+  field_test_period: true
+  field_test_type: true
+  langcode: true

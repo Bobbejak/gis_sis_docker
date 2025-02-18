@@ -1,0 +1,22 @@
+uuid: 9e28984a-4345-45eb-997f-a2d33bc0a26d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - tailwind_theme
+_core:
+  default_config_hash: P3or66YvcGI99km43VdqP-TWZctr49FDszF8VoE4Sp4
+id: tailwind_theme_messages
+theme: tailwind_theme
+region: content
+weight: -5
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

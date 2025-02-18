@@ -1,0 +1,11 @@
+uuid: a2d77f67-2006-48d7-a598-52d36d2f2eec
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.black_point_reasons
+id: taxonomy_term.black_point_reasons
+target_entity_type_id: taxonomy_term
+target_bundle: black_point_reasons
+default_langcode: site_default
+language_alterable: false

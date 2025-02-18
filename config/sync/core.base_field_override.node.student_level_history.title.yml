@@ -1,0 +1,18 @@
+uuid: cd4beebf-36e5-404f-86c3-34ed11f909a5
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - node.type.student_level_history
+id: node.student_level_history.title
+field_name: title
+entity_type: node
+bundle: student_level_history
+label: 'Student Level History'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

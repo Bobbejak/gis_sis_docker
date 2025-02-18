@@ -1,0 +1,22 @@
+uuid: f5dbe825-d3f5-4361-b0af-3e8182fda9c6
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - tailwind_theme
+_core:
+  default_config_hash: uu0nDHwYh6NwzM5sK8SxuCMBnnX4O6Xpn5_Y5u5ueGg
+id: tailwind_theme_powered_by_drupal
+theme: tailwind_theme
+region: footer
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

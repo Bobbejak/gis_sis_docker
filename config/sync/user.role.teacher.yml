@@ -1,0 +1,84 @@
+uuid: a7114c53-56f5-4fc2-aaf8-a59c5d96e087
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - node.type.basic_page
+    - node.type.black_points
+    - node.type.student
+    - node.type.test
+    - node.type.test_score
+    - taxonomy.vocabulary.academic_year
+    - taxonomy.vocabulary.black_point_reasons
+    - taxonomy.vocabulary.current_level
+    - taxonomy.vocabulary.current_status
+    - taxonomy.vocabulary.educational_status
+    - taxonomy.vocabulary.subject
+    - taxonomy.vocabulary.test_period
+    - taxonomy.vocabulary.test_type
+    - taxonomy.vocabulary.university_study_program
+    - taxonomy.vocabulary.university_study_year
+  module:
+    - file
+    - node
+    - rest
+    - search
+    - shortcut
+    - system
+    - taxonomy
+id: teacher
+label: Teacher
+weight: 4
+is_admin: null
+permissions:
+  - 'access content'
+  - 'access content overview'
+  - 'access shortcuts'
+  - 'access taxonomy overview'
+  - 'administer rest resources'
+  - 'cancel account'
+  - 'change own username'
+  - 'create basic_page content'
+  - 'create black_points content'
+  - 'create student content'
+  - 'create test content'
+  - 'create test_score content'
+  - 'delete black_points revisions'
+  - 'delete own basic_page content'
+  - 'delete own black_points content'
+  - 'delete own files'
+  - 'delete own student content'
+  - 'delete own test content'
+  - 'delete own test_score content'
+  - 'delete student revisions'
+  - 'delete test revisions'
+  - 'delete test_score revisions'
+  - 'edit own basic_page content'
+  - 'edit own black_points content'
+  - 'edit own student content'
+  - 'edit own test content'
+  - 'edit own test_score content'
+  - 'revert basic_page revisions'
+  - 'revert black_points revisions'
+  - 'revert student revisions'
+  - 'revert test revisions'
+  - 'revert test_score revisions'
+  - 'search content'
+  - 'use advanced search'
+  - 'view basic_page revisions'
+  - 'view black_points revisions'
+  - 'view own unpublished content'
+  - 'view student revisions'
+  - 'view term revisions in academic_year'
+  - 'view term revisions in black_point_reasons'
+  - 'view term revisions in current_level'
+  - 'view term revisions in current_status'
+  - 'view term revisions in educational_status'
+  - 'view term revisions in subject'
+  - 'view term revisions in test_period'
+  - 'view term revisions in test_type'
+  - 'view term revisions in university_study_program'
+  - 'view term revisions in university_study_year'
+  - 'view test revisions'
+  - 'view test_score revisions'
+  - 'view vocabulary labels'

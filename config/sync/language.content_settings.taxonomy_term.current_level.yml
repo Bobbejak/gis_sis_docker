@@ -1,0 +1,11 @@
+uuid: 5d1014bd-4d1e-48fd-8048-d1d996d666f7
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.current_level
+id: taxonomy_term.current_level
+target_entity_type_id: taxonomy_term
+target_bundle: current_level
+default_langcode: site_default
+language_alterable: false

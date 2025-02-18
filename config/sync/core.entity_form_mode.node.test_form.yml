@@ -1,0 +1,11 @@
+uuid: 9bcae15f-f29b-4ee1-8526-4391f95b063c
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - node
+id: node.test_form
+label: 'Test Form'
+description: ''
+targetEntityType: node
+cache: true

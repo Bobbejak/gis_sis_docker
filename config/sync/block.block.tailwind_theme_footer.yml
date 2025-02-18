@@ -1,0 +1,27 @@
+uuid: cbb4f1cb-1862-487c-b823-712c8cb3fdd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - tailwind_theme
+_core:
+  default_config_hash: IFu-TiViU6o3Py4BJ3Bv_Dq1mu3_tgXJgdAyiNd89cw
+id: tailwind_theme_footer
+theme: tailwind_theme
+region: footer
+weight: -6
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: Footer
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

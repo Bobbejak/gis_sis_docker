@@ -1,0 +1,27 @@
+uuid: f85c83e9-f60c-425e-b1de-b062605544f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - sis_pro
+_core:
+  default_config_hash: V3xFtnQhypStwf652jJlPJCa2rTDyU5XMfULS3ZGNjc
+id: sis_pro_main_navigation
+theme: sis_pro
+region: sidebar_left
+weight: -5
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

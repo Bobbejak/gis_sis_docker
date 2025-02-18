@@ -1,0 +1,25 @@
+uuid: 6e61ff6d-3253-404a-9d58-e3919524becd
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_education_history_student
+    - node.type.historical_educational_status
+id: node.historical_educational_status.field_education_history_student
+field_name: field_education_history_student
+entity_type: node
+bundle: historical_educational_status
+label: 'Education History Student'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: student_reference_list
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

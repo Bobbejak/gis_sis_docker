@@ -1,0 +1,29 @@
+uuid: 78355552-e2b4-4c4e-ae07-5fd1da3bec20
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_debrecen_graduation_year
+    - node.type.student
+    - taxonomy.vocabulary.academic_year
+id: node.student.field_debrecen_graduation_year
+field_name: field_debrecen_graduation_year
+entity_type: node
+bundle: student
+label: 'Debrecen Graduation Year'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      academic_year: academic_year
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

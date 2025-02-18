@@ -1,0 +1,18 @@
+default_patterns:
+  headings: headings
+  text: 0
+  lists: 0
+  blockquote: 0
+  rule: 0
+  table: 0
+  alerts: 0
+  breadcrumbs: 0
+  forms: 0
+  buttons: 0
+  pagination: 0
+default_colors:
+  - '#004635|green|Button'
+  - '#f4f4f4|grey|'
+  - '#ffab0d|Orange|'
+  - '#f02e2e|Red|'
+  - '#2e98f0|Blue|'

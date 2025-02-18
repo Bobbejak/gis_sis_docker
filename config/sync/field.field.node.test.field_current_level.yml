@@ -1,0 +1,29 @@
+uuid: 9a6e1a8e-4e53-4e1e-b68d-9ff7b2b44639
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_current_level
+    - node.type.test
+    - taxonomy.vocabulary.current_level
+id: node.test.field_current_level
+field_name: field_current_level
+entity_type: node
+bundle: test
+label: 'Current Level'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      current_level: current_level
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

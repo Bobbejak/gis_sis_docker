@@ -1,0 +1,29 @@
+uuid: e15a1a0d-1269-4727-b24d-a866db45699b
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_student_current_level
+    - node.type.student
+    - taxonomy.vocabulary.current_level
+id: node.student.field_student_current_level
+field_name: field_student_current_level
+entity_type: node
+bundle: student
+label: 'Student Current Level'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      current_level: current_level
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,11 @@
+uuid: d978f2c6-d724-4be8-bae5-4a23c72bd14d
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - node.type.historical_educational_status
+id: node.historical_educational_status
+target_entity_type_id: node
+target_bundle: historical_educational_status
+default_langcode: site_default
+language_alterable: false

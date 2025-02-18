@@ -1,0 +1,20 @@
+uuid: ae3329a6-8c2f-4f88-a9d8-b670df430616
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_educational_history_achiev
+field_name: field_educational_history_achiev
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

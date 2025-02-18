@@ -1,0 +1,10 @@
+status: 1
+pattern: '[node:field_student:entity:field_student_korean_name]-[node:field_student:entity:field_student_english_name]-[node:field_test]-Score'
+escape: false
+preserve_titles: false
+save: true
+chunk: 50
+dependencies:
+  config:
+    - node.type.test_score
+new_content_behavior: 1

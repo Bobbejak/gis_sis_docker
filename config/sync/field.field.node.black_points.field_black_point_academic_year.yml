@@ -1,0 +1,29 @@
+uuid: 0a20d826-e190-45ff-b16d-b77562fd3e24
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_black_point_academic_year
+    - node.type.black_points
+    - taxonomy.vocabulary.academic_year
+id: node.black_points.field_black_point_academic_year
+field_name: field_black_point_academic_year
+entity_type: node
+bundle: black_points
+label: 'Black Point Academic Year'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      academic_year: academic_year
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

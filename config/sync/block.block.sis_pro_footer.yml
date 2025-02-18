@@ -1,0 +1,27 @@
+uuid: f749f834-2695-4a00-812e-e2b332fb19d6
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - sis_pro
+_core:
+  default_config_hash: FRkRIE3B6BRFDHdvam_LEAdHWulZg6jKwKOpbBV334Y
+id: sis_pro_footer
+theme: sis_pro
+region: footer
+weight: -6
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: Footer
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

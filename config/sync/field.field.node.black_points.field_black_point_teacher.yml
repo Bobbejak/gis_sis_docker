@@ -1,0 +1,33 @@
+uuid: cc8d7a44-95dd-4c4a-aba2-a9d19a5ef19b
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_black_point_teacher
+    - node.type.black_points
+id: node.black_points.field_black_point_teacher
+field_name: field_black_point_teacher
+entity_type: node
+bundle: black_points
+label: 'Black Point Teacher'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: role
+      role:
+        teacher: teacher
+        content_editor: '0'
+        administrator: '0'
+    include_anonymous: true
+field_type: entity_reference

@@ -1,0 +1,29 @@
+uuid: 3541bfc6-7ff4-4a31-853b-3bf33ec72db9
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_black_point_test_period
+    - node.type.black_points
+    - taxonomy.vocabulary.test_period
+id: node.black_points.field_black_point_test_period
+field_name: field_black_point_test_period
+entity_type: node
+bundle: black_points
+label: 'Black Point Test Period'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      test_period: test_period
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

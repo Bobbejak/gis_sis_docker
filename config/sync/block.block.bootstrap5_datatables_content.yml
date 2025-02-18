@@ -1,0 +1,22 @@
+uuid: df35c1c0-47fc-4a14-9bd6-4eef47040ee3
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bootstrap5_datatables
+_core:
+  default_config_hash: nxyFjMskbsi0SWYyWq58WqUAq9TlWRGC6tXJsbLNbo4
+id: bootstrap5_datatables_content
+theme: bootstrap5_datatables
+region: content
+weight: -1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

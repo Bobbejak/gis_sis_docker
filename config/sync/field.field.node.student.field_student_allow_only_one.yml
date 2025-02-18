@@ -1,0 +1,39 @@
+uuid: 255a9341-f103-4f2e-b599-4e4f13492a00
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_student_allow_only_one
+    - node.type.student
+  module:
+    - allow_only_one
+third_party_settings:
+  allow_only_one:
+    field_before_enrolment_education: 0
+    field_educational_status_on_enro: 0
+    field_resident_registration_numb: 1
+    field_student_address: 0
+    field_student_contact_number: 1
+    field_student_current_level: 0
+    field_student_date_of_birth: 1
+    field_student_email_address: 0
+    field_student_english_name: 1
+    field_student_enrolment_date: 0
+    field_student_gender: 0
+    field_student_korean_name: 1
+    field_student_photo: 0
+    title: 0
+    case_sensitive: null
+    limit_validation_to_published: 0
+id: node.student.field_student_allow_only_one
+field_name: field_student_allow_only_one
+entity_type: node
+bundle: student
+label: 'Student Allow Only One'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: allow_only_one

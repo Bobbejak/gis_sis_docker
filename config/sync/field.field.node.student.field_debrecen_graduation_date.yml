@@ -1,0 +1,21 @@
+uuid: 654e716e-9065-4fcb-a907-e079edc4c374
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_debrecen_graduation_date
+    - node.type.student
+  module:
+    - datetime
+id: node.student.field_debrecen_graduation_date
+field_name: field_debrecen_graduation_date
+entity_type: node
+bundle: student
+label: 'Debrecen Graduation Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

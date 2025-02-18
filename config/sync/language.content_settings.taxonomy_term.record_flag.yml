@@ -1,0 +1,11 @@
+uuid: bdad5fe0-c660-4211-963f-748e66219cda
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.record_flag
+id: taxonomy_term.record_flag
+target_entity_type_id: taxonomy_term
+target_bundle: record_flag
+default_langcode: site_default
+language_alterable: false

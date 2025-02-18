@@ -1,0 +1,22 @@
+uuid: d7dad777-a9f4-4ec8-9fcb-b5264959a0cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - sis_pro
+_core:
+  default_config_hash: dLS-WY-2wSCrP4dILwqbrrgm3z5_z4Rc1VzQkoxRUxw
+id: sis_pro_content
+theme: sis_pro
+region: content
+weight: -1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

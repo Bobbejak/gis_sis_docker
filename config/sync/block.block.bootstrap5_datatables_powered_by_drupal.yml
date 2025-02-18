@@ -1,0 +1,22 @@
+uuid: 91401664-6663-44fc-a5da-959777d27bdc
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bootstrap5_datatables
+_core:
+  default_config_hash: uu0nDHwYh6NwzM5sK8SxuCMBnnX4O6Xpn5_Y5u5ueGg
+id: bootstrap5_datatables_powered_by_drupal
+theme: bootstrap5_datatables
+region: footer
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: a89b117b-f753-49c8-93d9-aa6ab0dd76d5
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - sis_pro
+_core:
+  default_config_hash: J1wmRJl0yuIdcVsuRwMrYtGH2kyAiXfnryulRhICmkQ
+id: sis_pro_help
+theme: sis_pro
+region: content
+weight: -3
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

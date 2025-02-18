@@ -1,0 +1,23 @@
+uuid: c4b2304a-80d6-4749-95e6-6c390ff3e4bb
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - sis_pro
+_core:
+  default_config_hash: C1sm5sxr-mYcN3kmTbWK2bw_RTED45_flCu3k8C6EXA
+id: sis_pro_search_form
+theme: sis_pro
+region: top_bar
+weight: -6
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

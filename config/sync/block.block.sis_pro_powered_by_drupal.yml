@@ -1,0 +1,22 @@
+uuid: 6f49d35b-7380-4ea8-a52e-bddbe7ca3937
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - sis_pro
+_core:
+  default_config_hash: UQZXLWd6x915Ck8Vd1NU-GsD6wgwU5c5Q4Il1g0rAcw
+id: sis_pro_powered_by_drupal
+theme: sis_pro
+region: footer
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

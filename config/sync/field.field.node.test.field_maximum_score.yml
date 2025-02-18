@@ -1,0 +1,25 @@
+uuid: f7df4205-fc6c-4317-834e-e01889f04b2d
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_maximum_score
+    - node.type.test
+id: node.test.field_maximum_score
+field_name: field_maximum_score
+entity_type: node
+bundle: test
+label: 'Maximum Score (Raw)'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 100.0
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

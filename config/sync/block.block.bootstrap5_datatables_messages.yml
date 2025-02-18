@@ -1,0 +1,22 @@
+uuid: c6fee708-581b-4736-be7b-4997c01eb4e2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bootstrap5_datatables
+_core:
+  default_config_hash: P3or66YvcGI99km43VdqP-TWZctr49FDszF8VoE4Sp4
+id: bootstrap5_datatables_messages
+theme: bootstrap5_datatables
+region: content
+weight: -7
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

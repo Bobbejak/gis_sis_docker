@@ -1,0 +1,22 @@
+uuid: 40327bc3-3744-4403-b3af-f53e7a819204
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gis_theme
+_core:
+  default_config_hash: dLS-WY-2wSCrP4dILwqbrrgm3z5_z4Rc1VzQkoxRUxw
+id: gis_theme_content
+theme: gis_theme
+region: content
+weight: -1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

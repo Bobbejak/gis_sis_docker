@@ -1,0 +1,22 @@
+uuid: 8791c273-84b8-43af-8c92-54ec6a242c29
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - starter_theme
+_core:
+  default_config_hash: P3or66YvcGI99km43VdqP-TWZctr49FDszF8VoE4Sp4
+id: starter_theme_messages
+theme: starter_theme
+region: content
+weight: -7
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

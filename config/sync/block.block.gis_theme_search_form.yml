@@ -1,0 +1,23 @@
+uuid: d1f2fb46-dcdb-4fdc-8ec9-2aa9158fbd69
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - gis_theme
+_core:
+  default_config_hash: C1sm5sxr-mYcN3kmTbWK2bw_RTED45_flCu3k8C6EXA
+id: gis_theme_search_form
+theme: gis_theme
+region: nav_additional
+weight: 0
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

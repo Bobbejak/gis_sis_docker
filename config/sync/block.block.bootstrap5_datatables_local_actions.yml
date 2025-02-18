@@ -1,0 +1,20 @@
+uuid: 60a90dd1-db25-4132-bafd-4b6db4c98f57
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bootstrap5_datatables
+_core:
+  default_config_hash: sTX5r4rRs9b5BLuEupJO4pRXlx4js-vow_3TDPdCjYQ
+id: bootstrap5_datatables_local_actions
+theme: bootstrap5_datatables
+region: content
+weight: -2
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

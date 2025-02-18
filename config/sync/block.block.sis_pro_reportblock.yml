@@ -1,0 +1,20 @@
+uuid: a95fd5ef-6d60-4dcc-8aa1-511358f706c6
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - sis_pro_reports
+  theme:
+    - sis_pro
+id: sis_pro_reportblock
+theme: sis_pro
+region: content
+weight: 0
+provider: null
+plugin: report_block
+settings:
+  id: report_block
+  label: 'Report Block'
+  label_display: visible
+  provider: sis_pro_reports
+visibility: {  }

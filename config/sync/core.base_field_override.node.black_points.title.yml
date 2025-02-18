@@ -1,0 +1,18 @@
+uuid: 13de7168-01c9-4e1f-b24d-0d73433cfd5c
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - node.type.black_points
+id: node.black_points.title
+field_name: title
+entity_type: node
+bundle: black_points
+label: 'Black Points'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

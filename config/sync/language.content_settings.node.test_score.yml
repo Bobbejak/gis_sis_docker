@@ -1,0 +1,11 @@
+uuid: 07994a6f-3d35-4b78-92ab-423c9bb6448a
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - node.type.test_score
+id: node.test_score
+target_entity_type_id: node
+target_bundle: test_score
+default_langcode: site_default
+language_alterable: false

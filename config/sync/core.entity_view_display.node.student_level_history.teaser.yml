@@ -1,0 +1,27 @@
+uuid: a3eb96f1-cb6d-4be9-9f50-17f477eec7b8
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.student_level_history.field_historical_academic_year
+    - field.field.node.student_level_history.field_historical_level
+    - field.field.node.student_level_history.field_historical_student
+    - node.type.student_level_history
+  module:
+    - user
+id: node.student_level_history.teaser
+targetEntityType: node
+bundle: student_level_history
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_historical_academic_year: true
+  field_historical_level: true
+  field_historical_student: true
+  langcode: true

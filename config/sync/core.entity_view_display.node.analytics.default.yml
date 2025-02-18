@@ -1,0 +1,47 @@
+uuid: 81c7dab2-6680-47e3-a013-af243db953d7
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.field.node.analytics.field_chart_type
+    - field.field.node.analytics.field_x_axis
+    - field.field.node.analytics.field_y_axis
+    - node.type.analytics
+  module:
+    - options
+    - user
+id: node.analytics.default
+targetEntityType: node
+bundle: analytics
+mode: default
+content:
+  field_chart_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_x_axis:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_y_axis:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

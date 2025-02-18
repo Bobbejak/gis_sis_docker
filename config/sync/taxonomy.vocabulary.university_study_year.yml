@@ -1,0 +1,9 @@
+uuid: 5f473deb-e475-4e22-9b76-1802c4c23f9c
+langcode: en-gb
+status: true
+dependencies: {  }
+name: 'University Study Year'
+vid: university_study_year
+description: "Tracks a students' current year of study in university"
+weight: 0
+new_revision: false

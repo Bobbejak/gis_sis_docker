@@ -1,0 +1,29 @@
+uuid: bf446175-55f0-4e4a-8821-1014c7445cbd
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_student_current_status
+    - node.type.student
+    - taxonomy.vocabulary.current_status
+id: node.student.field_student_current_status
+field_name: field_student_current_status
+entity_type: node
+bundle: student
+label: 'Student Current Status'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:filter_existing_terms'
+  handler_settings:
+    target_bundles:
+      current_status: current_status
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

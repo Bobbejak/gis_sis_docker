@@ -1,0 +1,9 @@
+uuid: ae5a02c9-35b4-435d-9e3d-bca0578bed34
+langcode: en-gb
+status: true
+dependencies: {  }
+name: 'Test Type'
+vid: test_type
+description: null
+weight: 0
+new_revision: false

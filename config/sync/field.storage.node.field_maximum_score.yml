@@ -1,0 +1,20 @@
+uuid: 9c59c151-28ba-49df-9b9f-4667248852ab
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_maximum_score
+field_name: field_maximum_score
+entity_type: node
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

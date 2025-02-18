@@ -1,0 +1,22 @@
+uuid: a04d56c6-a8a5-473d-a3f5-c6520b78fb83
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gis_theme
+_core:
+  default_config_hash: UQZXLWd6x915Ck8Vd1NU-GsD6wgwU5c5Q4Il1g0rAcw
+id: gis_theme_powered_by_drupal
+theme: gis_theme
+region: footer
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,34 @@
+uuid: c4dc64cb-f912-479e-9d7f-85709bb95787
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - comment
+    - contextual
+    - file
+    - node
+    - path
+    - rest
+    - system
+    - toolbar
+_core:
+  default_config_hash: e_wG1u7SrGaJbY2-Szgbgl-c8T3kdirU3uTNq2c_QJQ
+id: content_editor
+label: 'Content editor'
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access toolbar'
+  - 'administer rest resources'
+  - 'administer url aliases'
+  - 'create url aliases'
+  - 'delete own files'
+  - 'edit own comments'
+  - 'revert all revisions'
+  - 'view all revisions'
+  - 'view own unpublished content'
+  - 'view the administration theme'

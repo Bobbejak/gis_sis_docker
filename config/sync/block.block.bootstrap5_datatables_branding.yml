@@ -1,0 +1,25 @@
+uuid: b666b671-b983-4247-9db3-fb15412c4384
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bootstrap5_datatables
+_core:
+  default_config_hash: W1xGHIiIWPeFIPpkRulKKHrd-kIuiAJJQwV5VVUhtd4
+id: bootstrap5_datatables_branding
+theme: bootstrap5_datatables
+region: nav_branding
+weight: -6
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

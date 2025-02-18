@@ -1,0 +1,20 @@
+uuid: 038ed05b-29a7-4382-bf3c-47694da49db7
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_student_current_level
+field_name: field_student_current_level
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

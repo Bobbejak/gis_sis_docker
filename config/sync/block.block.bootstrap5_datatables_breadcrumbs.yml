@@ -1,0 +1,22 @@
+uuid: c9e19541-6d1e-40e1-8a0d-303653dec8e5
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bootstrap5_datatables
+_core:
+  default_config_hash: k-nDfw6Pg_Tr7UfxEq6emIo0l2FteHP_9VZ4a25S8IA
+id: bootstrap5_datatables_breadcrumbs
+theme: bootstrap5_datatables
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

@@ -1,0 +1,25 @@
+uuid: 115c0916-1763-4e6b-8b23-3d721c3e2bbb
+langcode: en-gb
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:2b1d1185-2f71-4de9-96bb-e3998ca88c3e'
+  module:
+    - block_content
+  theme:
+    - tailwind_theme
+id: tailwind_theme_useraccountactions
+theme: tailwind_theme
+region: header_top
+weight: 0
+provider: null
+plugin: 'block_content:2b1d1185-2f71-4de9-96bb-e3998ca88c3e'
+settings:
+  id: 'block_content:2b1d1185-2f71-4de9-96bb-e3998ca88c3e'
+  label: 'User Account Actions'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

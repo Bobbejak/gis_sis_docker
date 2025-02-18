@@ -1,0 +1,10 @@
+uuid: 9e00a106-1f6a-47d3-a77b-083b56ee7334
+langcode: en-gb
+status: true
+dependencies: {  }
+id: student_score
+label: 'Student Score'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,22 @@
+uuid: 41a06a51-db48-4a0b-bed1-8f94e6f0b4c7
+langcode: en
+status: true
+dependencies:
+  theme:
+    - sis_pro
+_core:
+  default_config_hash: ZF1wnxB8KRJYej82QimuMlhW3jJZBl-_u99L-P0Bqag
+id: sis_pro_local_tasks
+theme: sis_pro
+region: content
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

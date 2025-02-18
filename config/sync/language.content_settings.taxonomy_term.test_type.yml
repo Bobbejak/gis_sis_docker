@@ -1,0 +1,11 @@
+uuid: f61b7864-d437-43b4-affc-059585d60cab
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.test_type
+id: taxonomy_term.test_type
+target_entity_type_id: taxonomy_term
+target_bundle: test_type
+default_langcode: site_default
+language_alterable: false

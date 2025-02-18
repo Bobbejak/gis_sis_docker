@@ -1,0 +1,47 @@
+uuid: 22f04ccc-8d9e-45fa-80d9-797e260e6743
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - field.field.node.student_level_history.field_historical_academic_year
+    - field.field.node.student_level_history.field_historical_level
+    - field.field.node.student_level_history.field_historical_student
+    - node.type.student_level_history
+  module:
+    - user
+id: node.student_level_history.default
+targetEntityType: node
+bundle: student_level_history
+mode: default
+content:
+  field_historical_academic_year:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_historical_level:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_historical_student:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
