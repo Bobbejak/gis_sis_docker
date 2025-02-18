@@ -1,14 +1,15 @@
 <?php
 
 $databases['default']['default'] = array (
-  'database' => 'gis_sis',
-  'username' => 'gis_sis_user',
-  'password' => '240885MP',
-  'host' => 'mariadb',  // ✅ Ensure it connects via TCP/IP, not a Unix socket
-  'port' => '3306',
-  'driver' => 'mysql',
-  'prefix' => '',
-);
+    'database' => 'gis_sis',
+    'username' => 'gis_sis_user',
+    'password' => '240885MP',
+    'host' => 'mariadb',  // ✅ Change from 'localhost' to 'mariadb'
+    'port' => '3306',
+    'driver' => 'mysql',
+    'prefix' => '',
+  );
+  
 
 // Hash salt (required for security)
 $settings['hash_salt'] = 'random-generated-string';

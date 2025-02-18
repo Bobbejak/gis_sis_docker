@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   drupal:
-    image: drupal:10.4-apache
+    image: drupal:10.4-apache  # ✅ Use a pre-installed image
     container_name: drupal
     restart: always
     ports:
@@ -10,11 +10,10 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - ./config/sync:/var/www/html/config/sync
-      - ./modules:/var/www/html/modules
-      - ./themes:/var/www/html/themes
-      - drupal_files:/var/www/html/sites/default/files
-      - ./drupal/sites/default/settings.php:/var/www/html/sites/default/settings.php  # ✅ Mount settings.php
+      - ./config/sync:/var/www/html/config/sync  # ✅ Config persistence
+      - ./modules:/var/www/html/modules  # ✅ Modules persistence
+      - ./themes:/var/www/html/themes  # ✅ Themes persistence
+      - drupal_files:/var/www/html/sites/default/files  # ✅ User uploads persistence
     environment:
       - DRUPAL_DB_HOST=mariadb
       - DRUPAL_DB_USER=${MYSQL_USER}
