@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   drupal:
-    image: drupal:10.4-apache  # Ensure Drupal 10.4 is used
+    image: drupal:10.4-apache
     container_name: drupal
     restart: always
     ports:
@@ -10,11 +10,11 @@ services:
     depends_on:
       - mariadb
     volumes:
-      - ./config/sync:/var/www/html/config/sync  # Persist config
-      - ./modules:/var/www/html/modules  # Persist modules
-      - ./themes:/var/www/html/themes  # Persist themes
-      - drupal_files:/var/www/html/sites/default/files  # Persist user uploads
-
+      - ./config/sync:/var/www/html/config/sync
+      - ./modules:/var/www/html/modules
+      - ./themes:/var/www/html/themes
+      - drupal_files:/var/www/html/sites/default/files
+      - ./drupal/sites/default/settings.php:/var/www/html/sites/default/settings.php  # ✅ Mount settings.php
     environment:
       - DRUPAL_DB_HOST=mariadb
       - DRUPAL_DB_USER=${MYSQL_USER}
@@ -22,7 +22,7 @@ services:
       - DRUPAL_DB_NAME=${MYSQL_DATABASE}
 
   mariadb:
-    image: mariadb:10.6  # Ensure MariaDB 10.6 is used
+    image: mariadb:10.6
     container_name: mariadb
     restart: always
     ports:
@@ -33,8 +33,8 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
-      - db_data:/var/lib/mysql  # Persist database
+      - db_data:/var/lib/mysql
 
 volumes:
-  drupal_files:  # Stores user uploads
-  db_data:  # Stores the database
+  drupal_files:
+  db_data:
