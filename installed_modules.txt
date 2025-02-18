@@ -1,0 +1,184 @@
+ ------------- --------------------- --------- ---------------- 
+ [32m Package     [39m [32m Name                [39m [32m Status  [39m [32m Version        [39m 
+ ------------- --------------------- --------- ---------------- 
+  Core          Announcements         Enabled   10.4.0          
+                (announcements_feed                             
+                )                                               
+  Core          Automated Cron        Enabled   10.4.0          
+                (automated_cron)                                
+  Core          BigPipe (big_pipe)    Enabled   10.4.0          
+  Core          Block (block)         Enabled   10.4.0          
+  Core          Block Content         Enabled   10.4.0          
+                (block_content)                                 
+  Core          Breakpoint            Enabled   10.4.0          
+                (breakpoint)                                    
+  Core          CKEditor 5            Enabled   10.4.0          
+                (ckeditor5)                                     
+  Core          Comment (comment)     Enabled   10.4.0          
+  Core          Configuration         Enabled   10.4.0          
+                Manager (config)                                
+  Core          Contact (contact)     Enabled   10.4.0          
+  Core          Contextual Links      Enabled   10.4.0          
+                (contextual)                                    
+  Field types   Datetime (datetime)   Enabled   10.4.0          
+  Core          Database Logging      Enabled   10.4.0          
+                (dblog)                                         
+  Core          Internal Dynamic      Enabled   10.4.0          
+                Page Cache                                      
+                (dynamic_page_cache                             
+                )                                               
+  Core          Text Editor           Enabled   10.4.0          
+                (editor)                                        
+  Core          Field (field)         Enabled   10.4.0          
+  Core          Field Layout          Enabled   10.4.0          
+  (Experiment   (field_layout)                                  
+  al)                                                           
+  Core          Field UI (field_ui)   Enabled   10.4.0          
+  Field types   File (file)           Enabled   10.4.0          
+  Core          Filter (filter)       Enabled   10.4.0          
+  Core          Help (help)           Enabled   10.4.0          
+  Core          History (history)     Enabled   10.4.0          
+  Field types   Image (image)         Enabled   10.4.0          
+  Core          Inline Form Errors    Enabled   10.4.0          
+                (inline_form_errors                             
+                )                                               
+  Web           JSON:API (jsonapi)    Enabled   10.4.0          
+  services                                                      
+  Multilingua   Language (language)   Enabled   10.4.0          
+  l                                                             
+  Core          Layout Builder        Enabled   10.4.0          
+                (layout_builder)                                
+  Core          Layout Discovery      Enabled   10.4.0          
+                (layout_discovery)                              
+  Field types   Link (link)           Enabled   10.4.0          
+  Multilingua   Interface             Enabled   10.4.0          
+  l             Translation                                     
+                (locale)                                        
+  Core          Custom Menu Links     Enabled   10.4.0          
+                (menu_link_content)                             
+  Core          Menu UI (menu_ui)     Enabled   10.4.0          
+  Core          Node (node)           Enabled   10.4.0          
+  Field types   Options (options)     Enabled   10.4.0          
+  Core          Internal Page Cache   Enabled   10.4.0          
+                (page_cache)                                    
+  Core          Path (path)           Enabled   10.4.0          
+  Core          Path alias            Enabled   10.4.0          
+                (path_alias)                                    
+  Web           RESTful Web           Enabled   10.4.0          
+  services      Services (rest)                                 
+  Core          Search (search)       Enabled   10.4.0          
+  Web           Serialization         Enabled   10.4.0          
+  services      (serialization)                                 
+  Core          Shortcut (shortcut)   Enabled   10.4.0          
+  Core          System (system)       Enabled   10.4.0          
+  Core          Taxonomy (taxonomy)   Enabled   10.4.0          
+  Field types   Telephone             Enabled   10.4.0          
+                (telephone)                                     
+  Field types   Text (text)           Enabled   10.4.0          
+  Core          Toolbar (toolbar)     Enabled   10.4.0          
+  Core          Update Manager        Enabled   10.4.0          
+                (update)                                        
+  Core          User (user)           Enabled   10.4.0          
+  Core          Views (views)         Enabled   10.4.0          
+  Core          Views UI (views_ui)   Enabled   10.4.0          
+  Administrat   Admin Toolbar         Enabled   3.5.1           
+  ion           (admin_toolbar)                                 
+  Administrat   Admin Toolbar         Enabled   3.5.1           
+  ion           Search                                          
+                (admin_toolbar_sear                             
+                ch)                                             
+  Administrat   Admin Toolbar Extra   Enabled   3.5.1           
+  ion           Tools                                           
+                (admin_toolbar_tool                             
+                s)                                              
+  Field types   Allow Only One        Enabled   1.0.3           
+                (allow_only_one)                                
+  Entity        Automatic Entity      Enabled   8.x-3.4         
+                Labels                                          
+                (auto_entitylabel)                              
+  Views         Better Exposed        Enabled   7.0.4           
+                Filters                                         
+                (better_exposed_fil                             
+                ters)                                           
+  Field types   Computed Field        Enabled   3.0.0           
+                (computed_field)                                
+  Web           Serialization (CSV)   Enabled   4.0.1           
+  services      (csv_serialization)                             
+  Chaos tool    Chaos Tools           Enabled   4.1.0           
+  suite         (ctools)                                        
+  Chaos tool    Chaos Tools Views     Enabled   4.1.0           
+  suite         (ctools_views)                                  
+  (Experiment                                                   
+  al)                                                           
+  Development   Devel (devel)         Enabled   5.3.1           
+  Development   Devel Generate        Enabled   5.3.1           
+                (devel_generate)                                
+  Other         Entity (entity)       Enabled   8.x-1.5         
+  Field types   Entity Reference      Enabled   8.x-1.12        
+                Revisions                                       
+                (entity_reference_r                             
+                evisions)                                       
+  Reports       Entity Reports        Enabled   2.0.1           
+                (entity_reports)                                
+  Reports       Entity Reports CSV    Enabled   2.0.1           
+                (entity_reports_csv                             
+                )                                               
+  Fields        Field Group           Enabled   8.x-3.6         
+                (field_group)                                   
+  Fields        Inline Entity Form    Enabled   3.0.0-rc20      
+                (inline_entity_form                             
+                )                                               
+  jQuery UI     jQuery UI             Enabled   8.x-1.7         
+                (jquery_ui)                                     
+  Layout        Layout Options        Enabled   8.x-1.7         
+                (layout_options)                                
+  Layout        Layout Options UI     Enabled   8.x-1.7         
+                (layout_options_ui)                             
+  Other         Libraries             Enabled   4.0.5           
+                (libraries)                                     
+  Paragraphs    Paragraphs Type       Enabled   8.x-1.18        
+                Permissions                                     
+                (paragraphs_type_pe                             
+                rmissions)                                      
+  Paragraphs    Paragraphs            Enabled   8.x-1.18        
+                (paragraphs)                                    
+  Other         Pathauto (pathauto)   Enabled   8.x-1.13        
+  Other         Redirect 404          Enabled   8.x-1.11        
+                (redirect_404)                                  
+  Other         Redirect Domain       Enabled   8.x-1.11        
+                (redirect_domain)                               
+  Other         Redirect (redirect)   Enabled   8.x-1.11        
+  Styleguide    Simple Styleguide     Enabled   2.0.2           
+                (simple_styleguide)                             
+  Taxonomy      Taxonomy Manager      Enabled   2.0.16          
+                (taxonomy_manager)                              
+  Other         Token (token)         Enabled   8.x-1.15        
+  Other         Twig Tweak            Enabled   3.4.0           
+                (twig_tweak)                                    
+  Field types   UI Icons Fields       Enabled   1.0.0-beta2     
+                (ui_icons_field)                                
+  User          UI Icons Picker       Enabled   1.0.0-beta2     
+  interface     (ui_icons_picker)                               
+  User          UI Icons (ui_icons)   Enabled   1.0.0-beta2     
+  interface                                                     
+  Development   Unique Field          Enabled   8.x-2.2         
+                (unique_field)                                  
+  Views         Views Bulk            Enabled   4.3.2           
+                Operations                                      
+                (views_bulk_operati                             
+                ons)                                            
+  Views         Views Entity Form     Enabled   8.x-1.0-beta12  
+                Field                                           
+                (views_entity_form_                             
+                field)                                          
+  Custom        SIS Pro Reports       Enabled                   
+                (sis_pro_reports)                               
+  Custom        Student Level         Enabled                   
+                Manager                                         
+                (student_level_mana                             
+                ger)                                            
+  Custom        Test Creation         Enabled                   
+                (test_creation)                                 
+  Custom        Test Score Action     Enabled                   
+                (test_score_action)                             
+ ------------- --------------------- --------- ---------------- 
