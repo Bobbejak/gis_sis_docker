@@ -1,3 +1,5 @@
+version: '3.9'
+
 services:
   drupal:
     image: drupal:10.4
@@ -20,6 +22,8 @@ services:
       - DRUPAL_DATABASE_PASSWORD=user_240885MP
     depends_on:
       - db
+    networks:
+      - drupal-network
 
   db:
     image: mariadb:10.5
@@ -32,6 +36,28 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - drupal-network
+
+  tools:
+    image: drupal:10.4
+    container_name: drupal_tools
+    volumes:
+      - ./modules/custom:/var/www/html/modules/custom
+      - ./themes/custom:/var/www/html/themes/custom
+      - ./config/sync:/var/www/html/config/sync
+      - ./translations:/var/www/html/sites/default/files/translations
+      - ./sites/default/files:/var/www/html/sites/default/files
+      - ./sites/default/settings.php:/var/www/html/sites/default/settings.php
+      - ./sites/default/private:/var/www/html/sites/default/private
+      - ./startup.sh:/startup.sh  # <-- Add this line to map the script
+    working_dir: /var/www/html
+    networks:
+      - drupal-network
+    entrypoint: ["tail", "-f", "/dev/null"]  # Keeps the container running
 
 volumes:
   db_data:
+
+networks:
+  drupal-network:

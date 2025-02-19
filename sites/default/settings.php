@@ -8,10 +8,7 @@ $databases['default']['default'] = array (
   'port' => '3306',
   'driver' => 'mysql',
   'prefix' => '',
-);
-
-
-  
+);  
 
 // Hash salt (required for security)
 $settings['hash_salt'] = 'random-generated-string';
