@@ -5,7 +5,7 @@ modules/contrib
 themes/contrib
 themes/custom
 translations/
-.env
+./.env
 
 # Ignore database backups (should not be tracked in Git)
 db_backups/
