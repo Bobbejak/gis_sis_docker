@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+function sis_pro_reports_help($route_name, $route_match) {
+  switch ($route_name) {
+    case 'help.page.sis_pro_reports':
+      return t('This module provides student test reports.');
+  }
+}

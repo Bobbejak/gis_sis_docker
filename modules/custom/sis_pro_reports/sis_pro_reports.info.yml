@@ -1,0 +1,9 @@
+name: 'SIS Pro Reports'
+type: module
+description: 'Custom report aggregation module for student scores and penalties.'
+core_version_requirement: ^10
+package: 'Custom'
+dependencies:
+  - drupal:views
+  - drupal:field
+  - drupal:node

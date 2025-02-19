@@ -1,0 +1,8 @@
+
+student_level_manager.form:
+  path: '/student-levels'
+  defaults:
+    _form: 'Drupal\student_level_manager\Form\StudentLevelForm'
+    _title: 'Student Level Management'
+  requirements:
+    _permission: 'administer site configuration'

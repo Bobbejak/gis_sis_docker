@@ -1,0 +1,62 @@
+<?php
+
+use Drupal\node\Entity\Node;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+
+/**
+ * Implements hook_entity_insert().
+ * Automatically create test scores when a test is created.
+ */
+function test_creation_entity_insert(EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'node' && $entity->bundle() == 'test') {
+    $test_id = $entity->id();
+    $selected_level = $entity->get('field_current_level')->target_id;
+
+    if ($selected_level) {
+      // Load students that belong to the selected level.
+      $students = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+        'type' => 'student',
+        'field_student_current_level' => $selected_level,
+      ]);
+
+      foreach ($students as $student) {
+        // Create test score for the student.
+        $test_score = Node::create([
+          'type' => 'test_score',
+          'title' => 'Test Score for ' . $student->getTitle(),
+          'field_test' => ['target_id' => $test_id], // Link test score to the test.
+          'field_student' => ['target_id' => $student->id()], // Assign student.
+          'field_score' => NULL, // Score remains empty for now.
+        ]);
+        $test_score->save();
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ * Redirect teacher to test scores View after test creation.
+ */
+function test_creation_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'node_test_form') {
+    $form['actions']['submit']['#submit'][] = 'test_creation_redirect_after_test_submission';
+  }
+}
+
+/**
+ * Custom submit handler to redirect after test creation.
+ */
+function test_creation_redirect_after_test_submission($form, FormStateInterface $form_state) {
+  if ($test_id = $form_state->getValue('nid')) {
+
+    // Log the redirect attempt for debugging
+    \Drupal::logger('test_creation')->notice('Redirecting to test review page for Test ID: ' . $test_id);
+
+    // Use the correct route and pass the test ID as `arg_0`
+    $form_state->setRedirect('view.test_results.page_1', ['arg_0' => $test_id]);
+  }
+}
+

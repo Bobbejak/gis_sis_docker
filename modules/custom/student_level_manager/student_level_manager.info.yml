@@ -1,0 +1,7 @@
+name: Student Level Manager
+type: module
+description: Provides a form to manage and backfill student level history records.
+package: Custom
+core_version_requirement: ^10
+dependencies:
+  - drupal:node

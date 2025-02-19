@@ -1,0 +1,144 @@
+<?php
+
+/**
+ * @file
+ * Handles adding student score entries when a level is selected.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\paragraphs\Plugin\Field\FieldWidget\InlineParagraphsWidget;
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_form_alter().
+ */
+function test_entry_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'node_test_form' || $form_id === 'node_test_edit_form') {
+    // Add AJAX callback to level field
+    $form['field_current_level']['widget']['#ajax'] = [
+      'callback' => '_test_entry_level_ajax_callback',
+      'wrapper' => 'edit-field-student-score-wrapper',
+      'event' => 'change',
+      'progress' => [
+        'type' => 'throbber',
+        'message' => t('Loading students...'),
+      ],
+    ];
+
+    // Add wrapper to paragraphs field if not already present
+    $form['field_student_score']['#prefix'] = '<div id="edit-field-student-score-wrapper">';
+    $form['field_student_score']['#suffix'] = '</div>';
+  }
+}
+
+/**
+ * Ajax callback for level selection.
+ */
+function _test_entry_level_ajax_callback(array &$form, FormStateInterface $form_state) {
+  $level_value = $form_state->getValue('field_current_level');
+  
+  if (!empty($level_value[0]['target_id'])) {
+    $level_tid = $level_value[0]['target_id'];
+    
+    // Query for students in this level
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'student')
+      ->condition('field_student_current_level', $level_tid)
+      ->condition('status', 1)
+      ->accessCheck(TRUE);
+      
+    $student_nids = $query->execute();
+    
+    if (!empty($student_nids)) {
+      $count = count($student_nids);
+      \Drupal::messenger()->addMessage(t('Found @count students in selected level', [
+        '@count' => $count
+      ]));
+
+      // Get field info
+      $field_name = 'field_student_score';
+      $button = $form[$field_name]['widget']['add_more']['add_more_button_student_score'];
+      
+      // Remember current input
+      $current_input = $form_state->getUserInput();
+      $current_trigger = $form_state->getTriggeringElement();
+
+      // Debug button info
+      \Drupal::messenger()->addMessage('Button array parents: ' . print_r($button['#array_parents'] ?? [], TRUE));
+      \Drupal::messenger()->addMessage('Button parents: ' . print_r($button['#parents'] ?? [], TRUE));
+
+      // For each student
+      foreach ($student_nids as $student_id) {
+        try {
+          // Set up button press simulation
+          $triggering_element = [
+            '#parents' => ['field_student_score', 'widget', 'add_more', 'add_more_button_student_score'],
+            '#array_parents' => ['field_student_score', 'widget', 'add_more', 'add_more_button_student_score'],
+            '#submit' => [[InlineParagraphsWidget::class, 'addMoreSubmit']],
+            '#name' => 'field_student_score_student_score_add_more',
+            '#value' => 'Add Student Score',
+            '#delta' => 0,
+            '#button_type' => 'submit',
+            '#bundle_machine_name' => 'student_score',
+          ];
+
+          $form_state->setTriggeringElement($triggering_element);
+          $form_state->setUserInput([
+            '_triggering_element_name' => 'field_student_score_student_score_add_more',
+            '_triggering_element_value' => 'Add Student Score',
+            'field_student_score' => [
+              'add_more' => [
+                'add_more_delta' => '',
+              ],
+            ],
+          ]);
+
+          // Call submit handler
+          InlineParagraphsWidget::addMoreSubmit($form, $form_state);
+
+          // Get current widget state
+          $widget_state = InlineParagraphsWidget::getWidgetState([], $field_name, $form_state);
+
+          // Debug widget state
+          \Drupal::messenger()->addMessage(sprintf(
+            'Added paragraph for student %d, widget state: items_count=%d, real_item_count=%d', 
+            $student_id,
+            $widget_state['items_count'] ?? 0,
+            $widget_state['real_item_count'] ?? 0
+          ));
+
+          // Get the latest delta
+          $delta = $widget_state['items_count'] - 1;
+
+          // Set student value
+          if ($delta >= 0) {
+            $values = $form_state->getValue($field_name) ?: [];
+            if (!isset($values[$delta])) {
+              $values[$delta] = [];
+            }
+            $values[$delta]['subform']['field_student'] = $student_id;
+            $form_state->setValue($field_name, $values);
+          }
+
+        }
+        catch (\Exception $e) {
+          \Drupal::messenger()->addError('Error adding student ' . $student_id . ': ' . $e->getMessage());
+          \Drupal::logger('test_entry')->error('Error adding student @id: @error', [
+            '@id' => $student_id,
+            '@error' => $e->getMessage(),
+            '@trace' => $e->getTraceAsString()
+          ]);
+        }
+      }
+
+      // Restore original input state
+      $form_state->setUserInput($current_input);
+      $form_state->setTriggeringElement($current_trigger);
+
+      // Force rebuild
+      $form_state->setRebuild(TRUE);
+    }
+  }
+  
+  return $form['field_student_score'];
+}

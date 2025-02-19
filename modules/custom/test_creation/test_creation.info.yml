@@ -1,0 +1,11 @@
+name: 'Test Creation'
+type: module
+description: 'Automatically creates test scores for students in the selected level when a test is created.'
+package: Custom
+core_version_requirement: ^10
+dependencies:
+  - drupal:node
+  - drupal:taxonomy
+  - drupal:views
+  - drupal:inline_entity_form
+  - drupal:views_bulk_operations

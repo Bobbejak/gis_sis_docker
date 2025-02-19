@@ -1,0 +1,235 @@
+<?php
+
+namespace Drupal\student_level_manager\Form;
+
+use Drupal\Core\Form\FormBase;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+
+class StudentLevelForm extends FormBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getFormId() {
+    return 'student_level_manager_form';
+  }
+
+  /**
+ * AJAX callback to update the table when the reference year changes.
+ */
+  public function updateTable(array &$form, FormStateInterface $form_state) {
+    return $form['student_levels'];
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildForm(array $form, FormStateInterface $form_state) {
+    $current_year = date('Y');
+    $reference_year = $form_state->getValue('reference_year', $current_year);
+    
+    // Dropdown for selecting the reference year.
+    $form['reference_year'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Reference Year'),
+      '#options' => array_combine(range($current_year, $current_year - 10), range($current_year, $current_year - 10)),
+      '#default_value' => $reference_year,
+      '#ajax' => [
+        'callback' => '::updateTable',
+        'wrapper' => 'student-level-table',
+      ],
+    ];
+    
+    // Fetch students and their levels.
+    $students = $this->getStudentsWithLevels($reference_year);
+
+    // Table headers.
+    $table_headers = [
+      $this->t('Korean Name'),
+      $this->t('English Name'),
+      $this->t('Current Level'),
+    ];
+    for ($i = 0; $i < 5; $i++) {
+      $table_headers[] = (string) ($reference_year - $i);
+    }
+
+    $form['student_levels'] = [
+      '#type' => 'table',
+      '#header' => $table_headers,
+      '#attributes' => ['id' => 'student-level-table'],
+    ];
+
+    // Populate table rows.
+    foreach ($students as $student_id => $student) {
+      $row = [
+        'korean_name' => ['#markup' => $student['korean_name']],
+        'english_name' => ['#markup' => $student['english_name']],
+        'current_level' => ['#markup' => $student['current_level']],
+      ];
+      
+      // Auto-fill academic levels.
+      for ($i = 0; $i < 5; $i++) {
+        $year = $reference_year - $i;
+        $default_level = $this->getDefaultLevel(
+            $student['current_level'],
+            $i,
+            $student['graduation_year'],
+            $reference_year
+        );
+        $row[$year] = [
+            '#type' => 'select',
+            '#options' => $this->getLevelOptions(),
+            '#default_value' => $student['levels'][$year] ?? $default_level,
+        ];
+      }
+    
+      $form['student_levels'][$student_id] = $row;
+    }
+    
+    // Submit button.
+    $form['submit'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Save Records'),
+    ];
+
+    return $form;
+  }
+
+  /**
+   * Fetch students and their level history.
+   */
+  protected function getStudentsWithLevels($reference_year) {
+    $students = [];
+    $query = \Drupal::entityQuery('node')
+        ->condition('type', 'student')
+        ->accessCheck(FALSE);
+    
+    $student_ids = $query->execute();
+    foreach (Node::loadMultiple($student_ids) as $student) {
+        $student_id = $student->id();
+        $graduation_year = $student->hasField('field_gis_graduation_year') ? 
+            ($student->get('field_gis_graduation_year')->entity ? $student->get('field_gis_graduation_year')->entity->label() : NULL) : NULL;
+
+        $students[$student_id] = [
+            'korean_name' => $student->get('field_student_korean_name')->value,
+            'english_name' => $student->get('field_student_english_name')->value,
+            'current_level' => $student->get('field_student_current_level')->entity->label(),
+            'graduation_year' => $graduation_year,
+            'levels' => $this->getStudentHistory($student_id, $reference_year),
+        ];
+    }
+    return $students;
+}
+
+
+  /**
+   * Retrieve student level history.
+   */
+  protected function getStudentHistory($student_id, $reference_year) {
+    $history = [];
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'student_level_history')
+      ->condition('field_historical_student', $student_id)
+      ->accessCheck(FALSE);
+    
+    $history_ids = $query->execute();
+    foreach (Node::loadMultiple($history_ids) as $record) {
+      $year = $record->get('field_historical_academic_year')->entity->label();
+      $level = $record->get('field_historical_level')->entity->label();
+      $history[$year] = $level;
+    }
+    return $history;
+  }
+
+  /**
+   * Auto-fill level based on default progression.
+   */
+  protected function getDefaultLevel($current_level, $years_back, $graduation_year, $reference_year) {
+    $progression = ['IG 1', 'IG 2', 'IG 3', 'Pre-BMC', 'BMC', 'Pre-GMC'];
+
+    // Determine the year being calculated
+    $year_of_interest = $reference_year - $years_back;
+
+    // If the student graduated and we are at or after graduation, return "Graduated from GIS"
+    if ($current_level === 'Graduated from GIS' && $graduation_year) {
+        if ($year_of_interest >= $graduation_year) {
+            return 'Graduated from GIS';
+        }
+
+        // If we are at the year before graduation, return "Pre-GMC"
+        if ($year_of_interest == ($graduation_year - 1)) {
+            return 'Pre-GMC';
+        }
+
+        // If we are before graduation, follow normal progression from "Pre-GMC" backwards
+        $index = array_search('Pre-GMC', $progression);
+        $years_before_graduation = $graduation_year - $year_of_interest - 1;
+
+        // Ensure we do not go out of bounds in the array
+        return ($index - $years_before_graduation >= 0) ? $progression[$index - $years_before_graduation] : 'N/A';
+    }
+
+    // Standard level progression logic for non-graduated students
+    $index = array_search($current_level, $progression);
+    if ($index === FALSE || ($index - $years_back) < 0) {
+        return 'N/A';
+    }
+    return $progression[$index - $years_back] ?? 'N/A';
+  }
+
+
+
+/**
+ * Get level options from taxonomy.
+ */
+protected function getLevelOptions() {
+    $options = [];
+
+    // Load all terms from the "current_level" taxonomy.
+    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('current_level');
+
+    // Populate options with term names.
+    foreach ($terms as $term) {
+        $options[$term->name] = $term->name;
+    }
+
+    // Ensure "Graduated from GIS" is included if not in the taxonomy.
+    $options['Graduated from GIS'] = 'Graduated from GIS';
+    $options['N/A'] = 'N/A';
+
+    return $options;
+}
+
+
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    foreach ($form_state->getValue('student_levels') as $student_id => $data) {
+      foreach ($data as $year => $level) {
+        if (is_numeric($year)) {
+          $existing = \Drupal::entityQuery('node')
+            ->condition('type', 'student_level_history')
+            ->condition('field_historical_student', $student_id)
+            ->condition('field_historical_academic_year', $year)
+            ->execute();
+          
+          if (!$existing) {
+            $node = Node::create([
+              'type' => 'student_level_history',
+              'title' => "Level history for student $student_id in $year",
+              'field_historical_student' => $student_id,
+              'field_historical_academic_year' => $year,
+              'field_historical_level' => $level,
+            ]);
+            $node->save();
+          }
+        }
+      }
+    }
+    \Drupal::messenger()->addMessage($this->t('Student level history updated successfully.'));
+  }
+}

@@ -1,0 +1,7 @@
+sis_pro_reports.report:
+  path: '/report/{category}'
+  defaults:
+    _controller: '\Drupal\sis_pro_reports\Controller\ReportRouteController::handleReportPage'
+    _title_callback: '\Drupal\sis_pro_reports\Controller\ReportRouteController::getTitle'
+  requirements:
+    _permission: 'access content'

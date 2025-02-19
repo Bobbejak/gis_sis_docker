@@ -1,0 +1,9 @@
+select_all:
+  version: 1.x
+  js:
+    src/js/student_level_manager.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
+    - core/once

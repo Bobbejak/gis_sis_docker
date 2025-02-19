@@ -1,6 +1,10 @@
 # Ignore dependencies and core files that should not be in Git
 vendor/
 web/core/
+modules/contrib
+themes/contrib
+themes/custom
+translations/
 
 # Ignore database backups (should not be tracked in Git)
 db_backups/

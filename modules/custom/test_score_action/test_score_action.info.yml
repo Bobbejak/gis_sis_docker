@@ -1,0 +1,7 @@
+name: Test Score Action
+type: module
+description: 'Provides VBO action for creating test scores'
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:views_bulk_operations
