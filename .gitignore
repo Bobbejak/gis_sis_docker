@@ -1,7 +1,6 @@
 # Ignore dependencies and core files that should not be in Git
 vendor/
 web/core/
-web/sites/default/files/
 
 # Ignore database backups (should not be tracked in Git)
 db_backups/
@@ -11,7 +10,6 @@ web/sites/default/private/
 web/sites/default/settings.php
 web/sites/default/settings.local.php
 web/sites/default/services.yml
-web/sites/default/files/
 web/sites/default/files-private/
 
 # Ignore system

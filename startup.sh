@@ -1,21 +1,14 @@
 #!/bin/bash
 
-# Wait for MariaDB to be ready
-until mysqladmin ping -h"$DRUPAL_DB_HOST" --silent; do
-    echo "Waiting for MariaDB..."
-    sleep 5
-done
+echo "Setting correct permissions..."
+chown -R www-data:www-data /var/www/html/sites/default/files
+chown -R www-data:www-data /var/www/html/sites/default/files/translations
+chmod -R 775 /var/www/html/sites/default/files
+chmod -R 775 /var/www/html/sites/default/files/translations
 
-echo "🚀 Checking for module updates..."
-composer install --no-interaction --prefer-dist
-
-echo "📥 Importing latest Drupal configuration..."
-drush config-import -y
-
-echo "🧹 Clearing cache..."
+echo "Installing modules..."
+drush pm:enable admin_toolbar -y
 drush cr
 
-echo "✅ Startup checks completed."
-
-# Keep container running with Apache
-exec apache2-foreground
+echo "Starting services..."
+apachectl -D FOREGROUND

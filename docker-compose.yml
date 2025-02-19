@@ -2,38 +2,36 @@ version: '3.8'
 
 services:
   drupal:
-    image: drupal:10.4-apache  # ✅ Use a pre-installed image
-    container_name: drupal
+    image: drupal:10.4
+    container_name: drupal_sis
     restart: always
     ports:
       - "8080:80"
-    depends_on:
-      - mariadb
     volumes:
-      - ./config/sync:/var/www/html/config/sync  # ✅ Config persistence
-      - ./modules:/var/www/html/modules  # ✅ Modules persistence
-      - ./themes:/var/www/html/themes  # ✅ Themes persistence
-      - drupal_files:/var/www/html/sites/default/files  # ✅ User uploads persistence
+      - ./custom_modules:/var/www/html/modules/custom
+      - ./custom_themes:/var/www/html/themes/custom
+      - ./config/sync:/var/www/html/config/sync
+      - ./translations:/var/www/html/sites/default/files/translations
+      - ./sites/default/files:/var/www/html/sites/default/files
     environment:
-      - DRUPAL_DB_HOST=mariadb
-      - DRUPAL_DB_USER=${MYSQL_USER}
-      - DRUPAL_DB_PASSWORD=${MYSQL_PASSWORD}
-      - DRUPAL_DB_NAME=${MYSQL_DATABASE}
+      - DRUPAL_DATABASE_HOST=db
+      - DRUPAL_DATABASE_NAME=gis_sis
+      - DRUPAL_DATABASE_USER=gis_sis_user
+      - DRUPAL_DATABASE_PASSWORD=user_240885MP
+    depends_on:
+      - db
 
-  mariadb:
-    image: mariadb:10.6
-    container_name: mariadb
+  db:
+    image: mariadb:10.5
+    container_name: drupal_db
     restart: always
-    ports:
-      - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      MYSQL_DATABASE: gis_sis
+      MYSQL_USER: gis_sis_user
+      MYSQL_PASSWORD: user_240885MP
+      MYSQL_ROOT_PASSWORD: root
     volumes:
       - db_data:/var/lib/mysql
 
 volumes:
-  drupal_files:
   db_data:

@@ -1,14 +1,15 @@
 <?php
 
 $databases['default']['default'] = array (
-    'database' => 'gis_sis',
-    'username' => 'gis_sis_user',
-    'password' => '240885MP',
-    'host' => 'mariadb',  // ✅ Change from 'localhost' to 'mariadb'
-    'port' => '3306',
-    'driver' => 'mysql',
-    'prefix' => '',
-  );
+  'database' => getenv('DRUPAL_DATABASE_NAME') ?: 'gis_sis',
+  'username' => getenv('DRUPAL_DATABASE_USER') ?: 'gis_sis_user',
+'password' => getenv('DRUPAL_DATABASE_PASSWORD') ?: 'user_240885MP',
+  'host' => getenv('DRUPAL_DATABASE_HOST') ?: 'db',
+  'port' => '3306',
+  'driver' => 'mysql',
+  'prefix' => '',
+);
+
   
 
 // Hash salt (required for security)
