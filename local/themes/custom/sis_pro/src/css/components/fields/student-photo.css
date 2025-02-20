@@ -1,0 +1,8 @@
+.student-photo {
+    @apply w-16 h-16 rounded-md flex items-center justify-center overflow-hidden bg-white shadow;
+  }
+  
+  .student-photo img {
+    @apply w-full h-full object-cover;
+  }
+  

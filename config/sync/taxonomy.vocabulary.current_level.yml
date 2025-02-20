@@ -1,9 +1,0 @@
-uuid: e5e29163-7819-4db0-9c24-a02ca636e1ed
-langcode: en-gb
-status: true
-dependencies: {  }
-name: 'Current Level'
-vid: current_level
-description: null
-weight: 0
-new_revision: false

@@ -1,0 +1,21 @@
+@layer components {
+  .custom-branding-block {
+    @apply flex items-center gap-4 w-56;
+  } 
+  
+  .branding {
+    @apply flex items-center gap-4 h-full pl-4; /* Align logo and site name side by side */
+  }
+
+  .branding .site-logo {
+    @apply h-12 w-12 flex items-center bg-white rounded-md p-1; /* Small, responsive logo */
+  }
+
+  .branding .site-logo img {
+    @apply h-full w-auto object-contain; /* Maintain aspect ratio */
+  }
+
+  .branding .site-name {
+    @apply text-xs font-bold text-white; /* Clean, minimalist site name */
+  }
+}

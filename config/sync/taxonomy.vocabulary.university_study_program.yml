@@ -1,9 +1,0 @@
-uuid: 09b6a090-2814-4a67-ba81-397a72bdfe47
-langcode: en-gb
-status: true
-dependencies: {  }
-name: 'University Study Program'
-vid: university_study_program
-description: 'The study program the student is enrolled for in Debrechen University'
-weight: 0
-new_revision: false

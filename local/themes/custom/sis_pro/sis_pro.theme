@@ -1,0 +1,188 @@
+<?php
+
+use Drupal\Core\Theme\ThemeRegistryInterface;
+
+/**
+ * Implements hook_preprocess_image_widget().
+ */
+function sis_pro_preprocess_image_widget(array &$variables) {
+  $data = &$variables['data'];
+
+  // This prevents image widget templates from rendering preview container HTML
+  // to users that do not have permission to access these previews.
+  // @todo revisit in https://drupal.org/node/953034
+  // @todo revisit in https://drupal.org/node/3114318
+  if (isset($data['preview']['#access']) && $data['preview']['#access'] === FALSE) {
+    unset($data['preview']);
+  }
+}
+
+
+function sis_pro_preprocess_views_view_table(&$variables) {
+  if ($variables['view']->id() == 'student_history') {
+    \Drupal::logger('custom_debug')->notice('Preprocess function is running for student_level_history_backfill.');
+
+    $students = [];
+    $years = [];
+    
+    // ✅ Set Reference Year (Manually for Now)
+    $reference_year = 2025; // We will later allow user selection
+    
+    $system_year = date('Y'); // Get the real system year
+
+    // ✅ Generate the last 5 years including reference year
+    for ($i = 0; $i < 5; $i++) {
+      $years[] = (string) ($reference_year - $i);
+    }
+
+    // ✅ Debug: Check reference year selection
+    \Drupal::logger('custom_debug')->notice('Reference Year: @ref_year | System Year: @sys_year', [
+      '@ref_year' => $reference_year,
+      '@sys_year' => $system_year
+    ]);
+
+    if (empty($variables['rows'])) {
+      \Drupal::logger('custom_debug')->warning('No rows available in the View.');
+    } else {
+      \Drupal::logger('custom_debug')->notice('Total Rows: ' . count($variables['rows']));
+    }
+
+    foreach ($variables['rows'] as $row) {
+      // ✅ Extract student data
+      $student_korean = isset($row['columns']['field_student_korean_name']['content'][0]['field_output']['#markup'])
+        ? trim(strip_tags($row['columns']['field_student_korean_name']['content'][0]['field_output']['#markup']))
+        : '';
+
+      $student_english = isset($row['columns']['field_student_english_name']['content'][0]['field_output']['#markup'])
+        ? trim(strip_tags($row['columns']['field_student_english_name']['content'][0]['field_output']['#markup']))
+        : '';
+
+      $enrollment_date = isset($row['columns']['field_student_enrollment_date']['content'][0]['field_output']['#markup'])
+        ? trim(strip_tags($row['columns']['field_student_enrollment_date']['content'][0]['field_output']['#markup']))
+        : '';
+
+      $current_level = isset($row['columns']['field_student_current_level']['content'][0]['field_output']['#markup'])
+        ? trim(strip_tags($row['columns']['field_student_current_level']['content'][0]['field_output']['#markup']))
+        : '';
+
+      // ✅ Ensure student exists in the array
+      if (!isset($students[$student_korean])) {
+        $students[$student_korean] = [
+          'english_name' => $student_english,
+          'levels' => []
+        ];
+      }
+
+      // ✅ Fetch historical level records dynamically
+      $historical_levels = fetch_historical_levels($student_korean);
+
+      foreach ($years as $col_year) {
+        $level = null;
+
+        if ($reference_year == $system_year && $col_year == $reference_year) {
+          // ✅ If we're in the system year and it's the reference year, use `field_student_current_level`
+          if (!empty($current_level)) {
+            $level = $current_level;
+          }
+        } else {
+          // ✅ Otherwise, fetch historical level for that year
+          if (!empty($historical_levels[$col_year])) {
+            $level = $historical_levels[$col_year];
+          }
+        }
+
+        // ✅ Assign level to the correct column year
+        if (!empty($col_year) && !empty($level)) {
+          $students[$student_korean]['levels'][$col_year] = $level;
+        }
+      }
+    }
+
+    // ✅ Debug: Show final student dictionary before passing to Twig
+    \Drupal::logger('custom_debug')->notice('Final Students Dictionary: @students', [
+      '@students' => json_encode($students, JSON_UNESCAPED_UNICODE)
+    ]);
+
+    // ✅ Pass data to the Twig template
+    $variables['students'] = $students;
+    $variables['years'] = $years;
+  }
+}
+
+function fetch_historical_levels($student_name) {
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'student_level_history')
+    ->condition('field_student_korean_name', $student_name)
+    ->accessCheck(FALSE);
+
+  $nids = $query->execute();
+  $historical_levels = [];
+
+  if (!empty($nids)) {
+    $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+
+    foreach ($nodes as $node) {
+      $year = $node->get('field_historical_academic_year')->value;
+      $level = $node->get('field_historical_level')->value;
+
+      if (!empty($year) && !empty($level)) {
+        $historical_levels[$year] = $level;
+      }
+    }
+  }
+
+  \Drupal::logger('custom_debug')->notice('Historical Levels for @student: @levels', [
+    '@student' => $student_name,
+    '@levels' => json_encode($historical_levels, JSON_UNESCAPED_UNICODE)
+  ]);
+
+  return $historical_levels;
+}
+
+// function sis_pro_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+//   \Drupal::logger('sis_pro')->notice('theme_suggestions_node_alter() called.');
+
+//   if (!isset($variables['node']) || !$variables['node'] instanceof \Drupal\node\Entity\Node) {
+//       return;
+//   }
+
+//   $node = $variables['node'];
+
+//   if ($node->bundle() == 'analytics') {
+//       \Drupal::logger('sis_pro')->notice('Analytics node detected.');
+
+//       // Suggest node--analytics.html.twig
+//       $suggestions[] = 'node__analytics';
+
+//       // Ensure the chart type template suggestion is correctly formatted
+//       if ($chart_type = $node->get('field_chart_type')->value) {
+//           $formatted_chart_type = strtolower(trim($chart_type));
+//           $template_name = 'node__analytics__' . $formatted_chart_type;
+//           $suggestions[] = $template_name;
+//           \Drupal::logger('sis_pro')->notice('Suggested template: ' . $template_name);
+//       }
+//   }
+// }
+
+/**
+ * Implements hook_theme().
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

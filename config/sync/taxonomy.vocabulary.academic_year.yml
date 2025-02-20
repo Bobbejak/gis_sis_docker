@@ -1,9 +1,0 @@
-uuid: c348455a-261b-488a-b6a8-acd99269ccbb
-langcode: en-gb
-status: true
-dependencies: {  }
-name: 'Academic Year'
-vid: academic_year
-description: null
-weight: 0
-new_revision: false

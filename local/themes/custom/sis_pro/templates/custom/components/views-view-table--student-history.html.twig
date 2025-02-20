@@ -1,0 +1,39 @@
+{% include 'table--student-history.html.twig' %}
+<tr>
+  <td colspan="10" class="bg-blue-200 text-blue-800">
+    DEBUG: Checking if `students` is set - {{ students is defined ? 'YES' : 'NO' }}
+  </td>
+</tr>
+
+<tr>
+  <td colspan="10" class="bg-green-200 text-green-800">
+    DEBUG: Checking if `years` is set - {{ years is defined ? 'YES' : 'NO' }}
+  </td>
+</tr>
+
+{# ✅ Print students dictionary #}
+<tr>
+  <td colspan="10" class="bg-red-200 text-red-800">
+    FINAL DEBUG: Students Dictionary =
+    {{ students|json_encode(constant('JSON_PRETTY_PRINT')) }}
+  </td>
+</tr>
+
+<div class="mb-4">
+  <label for="reference-year" class="font-bold">Select Reference Year:</label>
+  <select id="reference-year" class="border px-2 py-1 rounded" onchange="setReferenceYear()">
+    {% for i in range(2020, 2025) %}
+      <option value="{{ i }}" {{ i == reference_year ? 'selected' : '' }}>{{ i }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<script>
+  function setReferenceYear() {
+    let year = document.getElementById("reference-year").value;
+    let url = new URL(window.location.href);
+    url.searchParams.set("ref_year", year);
+    window.location.href = url.toString();
+  }
+</script>
+

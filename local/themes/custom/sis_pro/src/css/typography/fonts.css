@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Work Sans';
+    src: url('../fonts/Work_Sans/work-sans-variable.ttf') format('truetype');
+    font-weight: 100 900; /* Since it's a variable font */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand/quicksand.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    src: url('../fonts/Noto_Sans_KR/noto-sans-kr.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

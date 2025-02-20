@@ -1,14 +1,12 @@
-# Ignore dependencies and core files that should not be in Git
+# Ignore db_backs and config/sync
+local/import/
+
+# Ignore drupal files
+drupal/sites/
+drupal/modules/contrib
+drupal/themes/contrib
 vendor/
 web/core/
-modules/contrib
-themes/contrib
-themes/custom
-translations/
-./.env
-
-# Ignore database backups (should not be tracked in Git)
-db_backups/
 
 # Ignore temporary and cache files
 web/sites/default/private/
@@ -17,4 +15,6 @@ web/sites/default/settings.local.php
 web/sites/default/services.yml
 web/sites/default/files-private/
 
-# Ignore system
+# Git should track: 
+# - root with docker compose, startup script, some instructionals, and gitignore.
+# - custom modlues and themes.

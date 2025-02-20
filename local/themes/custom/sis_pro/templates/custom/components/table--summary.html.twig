@@ -1,0 +1,24 @@
+{% if summary %}
+  <div class="table-container">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Total Items</th>
+          <th>Completed</th>
+          <th>Pending</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in summary %}
+          <tr>
+            <td>{{ item.category }}</td>
+            <td>{{ item.total }}</td>
+            <td>{{ item.completed }}</td>
+            <td>{{ item.pending }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}

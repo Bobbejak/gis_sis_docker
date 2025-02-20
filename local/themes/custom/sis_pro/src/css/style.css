@@ -1,0 +1,50 @@
+@import 'regions/page.css';
+@import 'regions/top-bar.css';
+@import 'regions/branding.css';
+@import 'regions/messages.css';
+@import 'regions/sidebar_left.css';
+@import 'regions/main-content.css';
+@import 'components/tables.css';
+@import 'components/forms.css';
+@import 'blocks/basic-info.css';
+@import 'blocks/contact-info.css';
+@import 'blocks/guardian-info.css';
+@import 'blocks/grade-history.css';
+@import 'views/view-unformatted.css';
+/* @import 'components/tabs.css'; */
+@import 'components/fields/student-photo.css';
+@import 'components/fields/student-profile-photo.css';
+@import 'components/final-english-results.css';
+@import 'frameworks/datatables.css';
+@import 'typography/fonts.css';
+@import 'components/student-level-manager.css';
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'flowbite';
+
+:root {
+  --texture-black-mamba: url('../textures/black-mamba.png');
+  --texture-leather: url('../textures/leather.png');
+  /* add more textures as needed */
+}
+
+@layer base {
+    body {
+      @apply text-gray-800 leading-relaxed text-sm;
+      @apply font-quicksand;
+    }
+  
+    h1, h2, h3, h4, h5, h6 {
+      @apply font-bold text-gray-900;
+    }
+  
+    /* table {
+      @apply font-sans;
+    } */
+  }
+
+
+  

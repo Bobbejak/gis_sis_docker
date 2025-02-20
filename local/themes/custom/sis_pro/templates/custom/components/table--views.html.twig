@@ -1,0 +1,69 @@
+
+{{ attach_library('sis_pro/tabulator') }}
+
+<table id="myTable" class="views-table w-full border-collapse border border-gray-300 rounded-md shadow-md text-gray-800 bg-white">
+  {# ✅ Table Caption (Optional) #}
+  {% if caption is defined %}
+    <caption class="text-lg font-bold text-gray-700 p-2">{{ caption }}</caption>
+  {% endif %}
+
+  <thead class="bg-gray-800 text-white text-sm font-bold shadow-md">
+    {% block header %}
+      {% if header is defined and header|length > 0 %}
+        <tr>
+          {% for column in header %}
+            <th class="px-4 py-2 border-b border-gray-400">{{ column.content }}</th>
+          {% endfor %}
+        </tr>
+      {% endif %}
+    {% endblock %}
+  </thead>
+
+  <tbody>
+    {% block content %}
+      {# ✅ Default Table Row Layout (Can Be Overridden) #}
+      {# ✅ Loop Through Rows #}
+      {% for row in rows %}
+        <tr class="hover:bg-gray-100 transition duration-300 {% if loop.index is even %}bg-gray-50{% endif %}">
+          
+          {# ✅ Check if Row Has Columns #}
+          {% if row.columns is defined %}
+            {% for column in row.columns %}
+              {# ✅ Graceful Fallback for Missing Content #}
+              <td class="px-4 py-2 border-b border-gray-200">
+                {{ column.content is defined and column.content is not empty ? column.content : '-' }}
+              </td>
+            {% endfor %}
+          
+          {# ✅ Fallback for Grouped or Custom Content #}
+          {% elseif row.content is defined %}
+            <td colspan="{{ header|length }}" class="px-4 py-2 border-b border-gray-200 text-center">
+              {{ row.content }}
+            </td>
+          
+          {# ✅ Catch-All Fallback #}
+          {% else %}
+            <td colspan="{{ header|length }}" class="px-4 py-2 border-b border-gray-200 text-center text-gray-500 italic">
+              No data available.
+            </td>
+          {% endif %}
+        </tr>
+      {% else %}
+        {# ✅ Fallback When No Rows Exist #}
+        <tr>
+          <td colspan="{{ header|length }}" class="text-center py-4 text-gray-500 italic">
+            No data available.
+          </td>
+        </tr>
+      {% endfor %}
+    {% endblock %}
+    </tbody>
+</table>
+
+{# {% include "table--student-final-score.html.twig" with { results: rows } %} #}
+
+
+
+
+
+

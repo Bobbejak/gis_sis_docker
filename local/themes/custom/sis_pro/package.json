@@ -1,0 +1,22 @@
+{
+  "name": "sis_pro",
+  "version": "1.0.0",
+  "description": "sis_pro theme, generated from starterkit_theme. Additional information on generating themes can be found in the [Starterkit documentation](https://www.drupal.org/docs/core-modules-and-themes/core-themes/starterkit-theme).",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./src/css/style.css -o ./css/style.css --minify",
+    "watch": "npx tailwindcss -i ./src/css/style.css -o ./css/style.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.7",
+    "flowbite": "^3.1.1"
+  }
+}

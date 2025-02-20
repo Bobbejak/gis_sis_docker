@@ -1,0 +1,172 @@
+@layer components {
+  /* ==========================
+     General Form Styling
+     ========================== */
+  
+  /* Entity Form Layout */
+  .entity-form {
+    @apply bg-gray-50 p-6 rounded-lg shadow space-y-6 max-w-5xl mx-auto;
+  }
+
+  
+
+  /* Dynamic Grid for Form Fields */
+  .form-grid {
+    /* @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+    width: fit-content;
+  }
+    
+  /* Apply to all forms for consistency */
+  form {
+    @apply bg-gray-50 p-6 rounded-lg shadow space-y-6;
+  }
+
+  /* Form Sections */
+  .form-section {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+  }
+
+  /* Full-width fields (e.g., textareas) */
+  .form-full {
+    @apply col-span-1 md:col-span-2;
+  }
+
+  /* Form Item Wrapper */
+  .form-item {
+    @apply flex flex-col;
+  }
+
+  /* Labels */
+  .form-item label {
+    @apply font-semibold text-gray-700 mb-1;
+  }
+
+  /* ==========================
+     Input and Select Styling
+     ========================== */
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="date"],
+  input[type="tel"],
+  input[type="search"],
+  textarea,
+  select {
+    @apply border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-custom-gray-light;
+  }
+
+  /* Input, Select, and Textarea Styling */
+  .form-item input[type="text"],
+  .form-item input[type="email"],
+  .form-item input[type="password"],
+  .form-item input[type="number"],
+  .form-item input[type="date"],
+  .form-item input[type="tel"],
+  .form-item input[type="search"],
+  .form-item textarea,
+  .form-item select {
+    @apply border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-custom-gray-light;
+  }
+
+  /* Textarea */
+  textarea {
+    @apply resize-none h-24;
+  }
+
+  /* Textarea Styling */
+  .form-item textarea {
+    @apply resize-none h-24;
+  }
+
+  /* File Upload */
+  input[type="file"] {
+    @apply border border-gray-300 rounded p-2 cursor-pointer;
+  }
+
+  /* Disabled Fields */
+  input:disabled,
+  textarea:disabled,
+  select:disabled {
+    @apply bg-gray-200 text-gray-500 cursor-not-allowed;
+  }
+
+  /* ==========================
+     Checkbox and Radio Styling
+     ========================== */
+
+  /* Checkbox & Radio Wrapper */
+  .form-checkboxes,
+  .form-radios {
+    @apply flex flex-col gap-2;
+  }
+
+  /* Checkbox and radio inputs */
+  .form-checkboxes input[type="checkbox"],
+  .form-radios input[type="radio"] {
+    @apply h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-custom-gray-light;
+  }
+
+  /* Checkbox labels */
+  .form-checkboxes label,
+  .form-radios label {
+    @apply text-gray-700 font-medium;
+  }
+
+  /* ==========================
+     Buttons and Form Actions
+     ========================== */
+
+  /* Submit Buttons */
+  .form-actions {
+    @apply flex justify-start gap-4 mt-4 col-span-full;
+  }
+
+  /* Standard Buttons */
+  .form-actions button,
+  .form-actions input[type="submit"],
+  button,
+  .button {
+    /* @apply text-black px-2 py-2 rounded shadow-md hover:bg-custom-yellow-light transition duration-300; */
+    @apply px-3 py-2 mx-1 border border-gray-300 cursor-pointer transition hover:bg-gray-100;
+  }
+
+  /* ==========================
+     Exposed Forms (Filters)
+     ========================== */
+
+  .views-exposed-form {
+    @apply bg-gray-50 p-4 rounded shadow gap-4;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 20px;
+  }
+
+  /* Styling for each form item in Views filters */
+  .views-exposed-form .form-item {
+    @apply flex flex-col min-w-[200px] max-w-xs;
+    flex: 1 1 200px;
+  }
+
+  /* Input and select styling in Views filters */
+  .views-exposed-form select,
+  .views-exposed-form input[type="text"] {
+    @apply border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-custom-gray-light;
+  }
+
+  /* Exposed form buttons */
+  .views-exposed-form .form-actions input[type="submit"],
+  .views-exposed-form .form-actions button {
+    @apply bg-custom-black text-white px-4 py-2 rounded shadow-md hover:bg-custom-red-dark transition duration-300 hover:cursor-pointer;
+  }
+
+  /* Ensuring buttons stay below filters */
+  .views-exposed-form .form-actions {
+    flex-basis: 100%;
+    @apply flex justify-start gap-2 mt-2;
+  }
+}

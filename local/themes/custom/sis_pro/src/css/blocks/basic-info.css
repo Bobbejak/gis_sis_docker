@@ -1,0 +1,25 @@
+@layer components {
+  .basic-info {
+    @apply bg-white shadow-md rounded-lg p-6 mb-6 border border-gray-200;
+  }
+
+  .basic-info h3 {
+    @apply text-2xl font-bold text-gray-800 mb-4 border-b-2 border-gray-300 pb-2;
+  }
+
+  .basic-info .custom-view-row {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 items-center;
+  }
+
+  /* .basic-info img {
+    @apply w-32 h-32 object-cover rounded-md border-2 border-gray-300 shadow-sm;
+  } */
+
+  .basic-info .views-label {
+    @apply text-gray-600 font-semibold;
+  }
+
+  .basic-info .field-content {
+    @apply text-gray-900;
+  }
+}

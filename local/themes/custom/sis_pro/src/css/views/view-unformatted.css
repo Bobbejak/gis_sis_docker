@@ -1,0 +1,14 @@
+@layer components {
+    .custom-views-wrapper {
+      @apply bg-white shadow p-4 rounded-md;
+    }
+  
+    .custom-view-row {
+      @apply border-b border-gray-200 py-2;
+    }
+  
+    .custom-view-row:last-child {
+      @apply border-none;
+    }
+  }
+  

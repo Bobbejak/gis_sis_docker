@@ -1,0 +1,8 @@
+.basic-info-photo {
+    @apply w-32 h-48 rounded-md flex items-center justify-center overflow-hidden bg-white shadow;
+  }
+  
+  .basic-info-photo img {
+    @apply w-32 h-48 object-cover;
+  }
+  

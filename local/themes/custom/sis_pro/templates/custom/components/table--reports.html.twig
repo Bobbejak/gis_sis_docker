@@ -1,0 +1,26 @@
+{% if reports %}
+  <div class="table-container">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>Report ID</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for report in reports %}
+          <tr>
+            <td>{{ report.id }}</td>
+            <td>{{ report.title }}</td>
+            <td>{{ report.author }}</td>
+            <td>{{ report.date }}</td>
+            <td>{{ report.status }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}

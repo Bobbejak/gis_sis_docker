@@ -1,0 +1,170 @@
+{% extends "table--views.html.twig" %}
+
+{# ✅ Step 1: Group Scores by Student #}
+{% set students = {} %}
+
+{% for row in rows %}
+  {# ✅ Extract Core Data Fields Using the Correct Method #}
+  {% set student_korean = row.columns.field_student_korean_name.content|render|trim|striptags|trim %}
+  {% set student_english = row.columns.field_student_english_name.content|render|trim|striptags|trim %}
+  {% set test_level = row.columns.field_current_level.content|render|trim|striptags|trim %}
+  {% set subject = row.columns.field_subject.content|render|trim|striptags|trim %}
+  {% set test_type = row.columns.field_test_type.content|render|trim|striptags|trim %}
+  {% set raw_score = row.columns.field_score.content|render|trim|striptags|trim|default(0) %}
+  {% set max_score = row.columns.field_maximum_score.content|render|trim|striptags|trim|default(1) %}
+
+  {# ✅ Normalize Score to Percentage #}
+  {% set normalized_score = max_score > 0 ? (raw_score / max_score) * 100 : 0 %}
+
+  {# ✅ Apply Correct Weighting #}
+  {% set weight = (test_type == 'Coursework') ? 10 : (test_type == 'Regular Test' ? 15 : 0) %}
+  {% set weighted_score = (normalized_score * weight) / 100 %}
+
+  {# ✅ Initialize Student Entry If Not Exists #}
+  {% if students[student_korean] is not defined %}
+    {% set students = students|merge({
+      (student_korean): {
+        'english_name': student_english,
+        'test_level': test_level,
+        'Listening_Test': 0, 'Speaking_Test': 0, 'Writing_Test': 0, 'Reading_Test': 0, 'Final_60': 0,
+        'Listening_CW': 0, 'Speaking_CW': 0, 'Writing_CW': 0, 'Reading_CW': 0, 'Final_40': 0,
+        'Final_Total': 0
+      }
+    }) %}
+  {% endif %}
+
+  {# ✅ Assign Score to Correct Column Based on Subject and Test Type #}
+
+
+{% if subject == "English Listening" and test_type == "Regular Test" %}
+  {% set students = students|merge({
+    (student_korean): students[student_korean]|merge({
+      'Listening_Test': weighted_score
+    })
+  }) %}
+{% elseif subject == "English Listening" and test_type == "Coursework" %}
+  {% set students = students|merge({
+    (student_korean): students[student_korean]|merge({
+      'Listening_CW': weighted_score
+    })
+  }) %}
+{% elseif subject == "English Speaking" and test_type == "Regular Test" %}
+  {% set students = students|merge({
+    (student_korean): students[student_korean]|merge({
+      'Speaking_Test': weighted_score
+    })
+  }) %}
+{% elseif subject == "English Speaking" and test_type == "Coursework" %}
+  {% set students = students|merge({
+    (student_korean): students[student_korean]|merge({
+      'Speaking_CW': weighted_score
+    })
+  }) %}
+{% elseif subject == "English Writing" and test_type == "Regular Test" %}
+  {% set students = students|merge({
+    (student_korean): students[student_korean]|merge({
+      'Writing_Test': weighted_score
+    })
+  }) %}
+{% elseif subject == "English Writing" and test_type == "Coursework" %}
+  {% set students = students|merge({
+    (student_korean): students[student_korean]|merge({
+      'Writing_CW': weighted_score
+    })
+  }) %}
+{% elseif subject == "English Reading" and test_type == "Regular Test" %}
+  {% set students = students|merge({
+    (student_korean): students[student_korean]|merge({
+      'Reading_Test': weighted_score
+    })
+  }) %}
+{% elseif subject == "English Reading" and test_type == "Coursework" %}
+  {% set students = students|merge({
+    (student_korean): students[student_korean]|merge({
+      'Reading_CW': weighted_score
+    })
+  }) %}
+{% endif %}
+
+
+  {% if key != '' %}
+    {% set students = students|merge({
+      (student_korean): students[student_korean]|merge({
+        (key): students[student_korean][key] + weighted_score
+      })
+    }) %}
+  {% endif %}
+
+  {# ✅ Aggregate Final Scores #}
+  {% if test_type == "Regular Test" %}
+    {% set students = students|merge({
+      (student_korean): students[student_korean]|merge({
+        'Final_60': students[student_korean]['Final_60'] + weighted_score
+      })
+    }) %}
+  {% elseif test_type == "Coursework" %}
+    {% set students = students|merge({
+      (student_korean): students[student_korean]|merge({
+        'Final_40': students[student_korean]['Final_40'] + weighted_score
+      })
+    }) %}
+  {% endif %}
+
+  {# ✅ Compute Final Total #}
+  {% set students = students|merge({
+    (student_korean): students[student_korean]|merge({
+      'Final_Total': students[student_korean]['Final_60'] + students[student_korean]['Final_40']
+    })
+  }) %}
+{% endfor %}
+
+{# ✅ Add the Table Header #}
+{% block header %}
+  <tr>
+    <th rowspan="2" class="px-4 py-2 border-b border-gray-400">Korean Name</th>
+    <th rowspan="2" class="px-4 py-2 border-b border-gray-400">English Name</th>
+    <th rowspan="2" class="px-4 py-2 border-b border-gray-400">Test Level</th>
+    <th colspan="4" class="px-4 py-2 border-b border-gray-400">English Skill / 15</th>
+    <th rowspan="2" class="px-4 py-2 border-b border-gray-400">FINAL / 60</th>
+    <th colspan="4" class="px-4 py-2 border-b border-gray-400">Coursework / 10</th>
+    <th rowspan="2" class="px-4 py-2 border-b border-gray-400">FINAL / 40</th>
+    <th rowspan="2" class="px-4 py-2 border-b border-gray-400">FINAL</th>
+  </tr>
+  <tr>
+    <th class="px-4 py-2 border-b border-gray-400">Listening</th>
+    <th class="px-4 py-2 border-b border-gray-400">Speaking</th>
+    <th class="px-4 py-2 border-b border-gray-400">Writing</th>
+    <th class="px-4 py-2 border-b border-gray-400">Reading</th>
+    <th class="px-4 py-2 border-b border-gray-400">Listening</th>
+    <th class="px-4 py-2 border-b border-gray-400">Speaking</th>
+    <th class="px-4 py-2 border-b border-gray-400">Writing</th>
+    <th class="px-4 py-2 border-b border-gray-400">Reading</th>
+  </tr>
+{% endblock %}
+
+{# ✅ Render Table Content #}
+{% block content %}
+  {% for student, data in students %}
+    <tr>
+      <td class="px-4 py-2 border-b border-gray-200">{{ student }}</td>
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.english_name }}</td>
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.test_level }}</td>
+
+      {# ✅ Regular Test Scores (Out of 15) #}
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.Listening_Test|number_format(2) }}</td>
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.Speaking_Test|number_format(2) }}</td>
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.Writing_Test|number_format(2) }}</td>
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.Reading_Test|number_format(2) }}</td>
+      <td class="px-4 py-2 border-b border-gray-200 font-bold">{{ data.Final_60|number_format(2) }}</td>
+
+      {# ✅ Coursework Scores (Out of 10) #}
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.Listening_CW|number_format(2) }}</td>
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.Speaking_CW|number_format(2) }}</td>
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.Writing_CW|number_format(2) }}</td>
+      <td class="px-4 py-2 border-b border-gray-200">{{ data.Reading_CW|number_format(2) }}</td>
+      <td class="px-4 py-2 border-b border-gray-200 font-bold">{{ data.Final_40|number_format(2) }}</td>
+
+      <td class="px-4 py-2 border-b border-gray-200 font-bold text-xl">{{ data.Final_Total|number_format(2) }}</td>
+    </tr>
+  {% endfor %}
+{% endblock %}

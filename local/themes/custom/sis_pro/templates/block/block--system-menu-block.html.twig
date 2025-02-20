@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Theme override for a menu block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ * - content: The content of this block.
+ * - attributes: HTML attributes for the containing element.
+ */
+#}
+
+{%
+  set classes = [
+    'block',
+    'block-menu',
+    'navigation',
+    'menu--' ~ derivative_plugin_id|clean_class,
+  ]
+%}
+{% set heading_id = attributes.id ~ '-menu'|clean_id %}
+
+{# Recursive Macro for Nested Menus #}
+{% macro render_menu(items) %}
+  <ul class="menu">
+    {% for item in items %}
+      <li class="menu-item {% if item.below %}has-children{% endif %}">
+        <a href="{{ item.url }}">{{ item.title }}</a>
+
+        {# Recursively Render Submenus #}
+        {% if item.below %}
+          {{ _self.render_menu(item.below) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{# Main Navigation Rendering #}
+<nav role="navigation" {{ attributes.addClass(classes)|without('role', 'aria-labelledby') }}>
+
+  {{ _self.render_menu(content['#items']) }}
+</nav>
+
+

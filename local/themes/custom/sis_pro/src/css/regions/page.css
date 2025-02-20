@@ -1,0 +1,11 @@
+@layer components {
+  .main-content {
+    @apply flex flex-row; /* Ensure horizontal layout */
+  }
+
+  @media (max-width: 768px) {
+    .main-content {
+      @apply flex-col; /* Stack vertically on small screens */
+    }
+  }
+}

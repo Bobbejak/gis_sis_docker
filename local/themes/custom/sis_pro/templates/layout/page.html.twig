@@ -1,0 +1,85 @@
+{# page.html.twig #}
+
+<div class="top-bar">
+  <div class="branding">
+    {{ page.branding }}
+  </div>
+  {% if page.top_bar %}
+    <div class="user-actions">
+      {{ page.top_bar }}
+    </div>
+  {% endif %}
+</div>
+
+{# Main Layout with Sidebar and Content #}
+<div class="flex flex-1">
+  {# Left Sidebar #}
+  {% if page.sidebar_left %}
+    <aside class="sidebar-left">
+      {{ page.sidebar_left }}
+    </aside>
+  {% endif %}
+
+  {# Main Content Area #}
+  <main class="content-area flex-1">
+    {# Breadcrumbs #}
+    {% if page.breadcrumbs %}
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        {{ page.breadcrumbs }}
+      </nav>
+    {% endif %}
+
+    {# Messages #}
+    {% if page.messages %}
+      <div class="messages">
+        {{ page.messages }}
+      </div>
+    {% endif %}
+
+    <div class="content-wrapper">
+      {% if page.title %}
+        <h1 class="page-title">{{ page.title }}</h1>
+      {% endif %}
+
+      {{ page.content }}
+
+      {# Conditional table loading based on data availability #}
+      {% if users %}
+        {% include '@components/table--users.html.twig' with { users: users } %}
+      {% endif %}
+
+      {% if reports %}
+        {% include '@components/table--reports.html.twig' with { reports: reports } %}
+      {% endif %}
+
+      {% if summary %}
+        {% include '@components/table--summary.html.twig' with { summary: summary } %}
+      {% endif %}
+
+      {% if views_table %}
+        {% include '@components/table--views.html.twig' with {
+          header: header,
+          rows: rows,
+          attributes: attributes
+        } %}
+      {% endif %}
+    </div>
+
+    {# Secondary Sidebar (Optional) #}
+    {% if page.sidebar_right %}
+      <aside class="sidebar-right">
+        {{ page.sidebar_right }}
+      </aside>
+    {% endif %}
+  </main>
+</div>
+
+{# Footer #}
+{% if page.footer %}
+  <footer class="footer">
+    {{ page.footer }}
+  </footer>
+{% endif %}
+
+{{ attach_library('sis_pro/global-scripts') }}
+</div>

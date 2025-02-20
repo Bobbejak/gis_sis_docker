@@ -1,0 +1,24 @@
+@layer components {
+  .top-bar {
+    background-image: url('../textures/binding-dark.png');
+    background-size: auto;
+    background-repeat: repeat;
+
+
+    @apply mb-0 bg-custom-black text-white h-20 flex justify-between items-center px-4 border-b-2 border-custom-red-dark 
+           shadow-[0_4px_4px_-2px_rgba(0,0,0,0.2)]; /* Small shadow at bottom only */
+  }
+
+  .user-actions {
+    @apply flex items-center gap-4; /* Align user actions horizontally */
+  }
+
+  .user-actions a {
+    @apply text-white px-3 py-1 hover:bg-custom-red hover:font-semibold 
+           shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.1)];
+  }
+
+  .region-top-bar ul.menu {
+    display: flex;
+  }
+}

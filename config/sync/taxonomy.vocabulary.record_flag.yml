@@ -1,9 +1,0 @@
-uuid: 28675d53-776a-43b3-a958-d5d61d4cd3a8
-langcode: en-gb
-status: true
-dependencies: {  }
-name: 'Record Flag'
-vid: record_flag
-description: "A term to flag an entity's status in some way."
-weight: 0
-new_revision: false

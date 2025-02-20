@@ -1,0 +1,66 @@
+@layer components {
+  /* Left Sidebar */
+  .sidebar-left {
+    background-image: url('../textures/binding-dark.png');
+    background-size: auto;
+    background-repeat: repeat;
+
+    @apply bg-custom-black text-white
+           w-60 min-h-screen p-4 flex-shrink-0 
+           shadow-[4px_0_8px_-2px_rgba(0,0,0,0.4)]
+           shadow-[0_-4px_8px_-2px_rgba(0,0,0,0.2)];
+  }
+
+  .sidebar-left a {
+    @apply block py-2 px-4;
+  }
+
+  .sidebar-left a.active {
+    @apply bg-gray-700 font-bold;
+  }
+
+  /* Menu Item */
+  .menu {
+    @apply list-none p-0 m-0;
+  }
+
+  .menu-item {
+    @apply relative;
+  }
+
+  .menu-item > a {
+    /* background-image: url('../textures/binding-dark.png');
+    background-size: auto;
+    background-repeat: repeat; */
+    @apply flex items-center justify-between py-2 px-4 text-gray-100 font-light hover:text-white hover:underline;
+  }
+
+  /* Active state for the current page */
+  .menu-item > a.active {
+    @apply bg-custom-yellow font-bold;
+  }
+
+  /* Arrow Indicator */
+  .arrow-indicator::after {
+    @apply ml-2 inline-block transition-transform duration-300 ease-in-out;    
+    content: '❯';   
+    font-size: 0.8rem;
+    transform-origin: center;
+  }
+
+  /* Rotate arrow when menu is open */
+  .arrow-indicator.rotated::after {
+    @apply text-custom-yellow;
+    transform: rotate(90deg); /* Arrow points down when expanded */
+  }
+
+  .menu-item .menu {
+    @apply overflow-hidden pl-4;
+    height: 0;
+    display: none;
+  }
+
+  .menu-item.open > .menu {
+    display: block;
+  }
+}

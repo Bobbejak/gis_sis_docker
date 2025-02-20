@@ -1,0 +1,43 @@
+{% extends "table--views.html.twig" %}
+
+{% block header %}
+  <tr>
+    <th class="px-4 py-2 border-b border-gray-400">Korean Name</th>
+    <th class="px-4 py-2 border-b border-gray-400">English Name</th>
+
+    {# ✅ Dynamically Generate Academic Year Headers #}
+    {% for year in years %}
+      <th class="px-4 py-2 border-b border-gray-400">{{ year }}</th>
+    {% endfor %}
+  </tr>
+{% endblock %}
+
+{% block content %}
+
+  {# ✅ Loop Through Students #}
+  {% for student_korean, student_data in students %}
+    <tr class="hover:bg-gray-100 transition duration-300 {% if loop.index is even %}bg-gray-50{% endif %}">
+      {# ✅ Student Names #}
+      <td class="px-4 py-2 border-b border-gray-200">{{ student_korean }}</td>
+      <td class="px-4 py-2 border-b border-gray-200">{{ student_data.english_name }}</td>
+
+      {# ✅ Loop Through Academic Years and Insert Historical Levels #}
+      {% for year in years %}
+        <td class="px-4 py-2 border-b border-gray-200">
+          {% if student_data.levels[year] is defined %}
+            <input type="text" value="{{ student_data.levels[year] }}" />
+          {% else %}
+            N/A
+          {% endif %}
+        </td>
+      {% endfor %}
+    </tr>
+  {% else %}
+    {# ✅ Fallback When No Rows Exist #}
+    <tr>
+      <td colspan="{{ 2 + years|length }}" class="text-center py-4 text-gray-500 italic">
+        No data available.
+      </td>
+    </tr>
+  {% endfor %}
+{% endblock %}

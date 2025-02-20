@@ -1,8 +1,0 @@
-name: Test Entry
-type: module
-description: 'Provides test score entry functionality'
-package: Custom
-core_version_requirement: ^9 || ^10
-dependencies:
-  - drupal:node
-  - paragraphs:paragraphs

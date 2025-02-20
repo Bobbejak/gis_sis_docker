@@ -39,16 +39,6 @@ echo 'NAVIGATING TO /var/www/html'
 # Navigate to the Drupal installation directory
 cd /var/www/html
 
-echo 'CHECKING IF DRUPAL IS INSTALLED'
-# Check if Drupal is already installed
-if [ -f web/sites/default/services.yml ]; then
-  echo "DRUPAL SITE NOT FOUND!"
-  echo "PLEASE INSTALL DRUPAL MANUALLY THROUGH THE BROWSER AT HTTP://LOCALHOST:8080."
-  echo "AFTER INSTALLATION, RERUN THIS SCRIPT TO COMPLETE SETUP."
-else
-  echo "DRUPAL SITE DETECTED. CONTINUING WITH MAINTENANCE TASKS..."
-fi
-
 # Run Composer install
 read -p "Do you want to run 'composer install'? (y/n): " run_composer
 if [[ "$run_composer" =~ ^[Yy]$ ]]; then
@@ -65,18 +55,11 @@ read -p "Have you installed Drupal through the browser'? (y/n): " drupal_install
     fi
 
     # Import Drupal configuration
-    read -p "Do you want to import your sql dump file (name should be db_backups/drush_gis_sis.sql) in db_backups? (y/n): " import_dumpfile
+    read -p "Do you want to import your sql dump file (name should be ./local/import/db_backups/drush_gis_sis.sql in host pc) in db_backups? (y/n): " import_dumpfile
     if [[ "$import_dumpfile" =~ ^[Yy]$ ]]; then
       drush sql-drop
-      drush sql-cli < /db_backups/drush_gis_sis.sql
+      drush sql-cli < /db_backups/gis_sis_drush.sql
     fi
-
-    # Set correct permissions for the files and translations directories
-    # echo "FIRST SETTING PERMISSIONS..."
-    # chown -R www-data:www-data /var/www/html/modules/contrib
-    # chmod -R 775 /var/www/html/modules/contrib
-    # chown -R www-data:www-data /var/www/html/modules/custom
-    # chmod -R 775 /var/www/html/modules/custom
 
     # Enable contributed modules
     read -p "Do you want to enable contributed modules? (y/n): " enable_modules
@@ -123,5 +106,4 @@ read -p "Have you installed Drupal through the browser'? (y/n): " drupal_install
 
 fi
 
-
-echo "STARTUP/SETUP SCRIPT COMPLETED."
+echo "STARTUP/SETUP SCRIPT ENDED."

@@ -1,0 +1,123 @@
+<div class="flex justify-center">
+  <canvas id="analyticsChart" width="400" height="400" class="max-w-[400px] max-h-[400px]"></canvas>
+</div>
+
+
+<!-- Table to display data below the chart -->
+<table class="table-auto w-full mt-4 border border-gray-300">
+    <thead>
+        <tr>
+            <th>Study Year</th>
+            <th>Count</th>
+        </tr>
+    </thead>
+    <tbody id="chartTableBody"></tbody>
+</table>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async function() {
+      try {
+          const studentResponse = await fetch('/drupal/myschool/web/analytics-data');
+          const studentData = await studentResponse.json();
+
+          const categories = {};
+          let totalRecords = 0;
+          let excludedRecords = 0;
+          let taxonomyTIDs = new Set();
+
+          studentData.forEach(row => {
+              const studyYearField = row.field_university_study_year;
+              if (!studyYearField || studyYearField.length === 0) {
+                  excludedRecords++;
+                  return;
+              }
+              const studyYearTID = studyYearField[0].target_id;
+              taxonomyTIDs.add(parseInt(studyYearTID));
+              categories[studyYearTID] = (categories[studyYearTID] || 0) + 1;
+              totalRecords++;
+          });
+
+          const taxonomyResponse = await fetch('/drupal/myschool/web/student_taxonomy_data');
+          const taxonomyData = await taxonomyResponse.json();
+
+          const tidToNameMap = {};
+          taxonomyData.forEach(term => {
+              tidToNameMap[parseInt(term.tid_1)] = term.name;
+          });
+
+          const labels = Object.keys(categories).map(tid => tidToNameMap[parseInt(tid)] || `Unknown (${tid})`);
+          const values = Object.values(categories);
+
+          const backgroundColors = labels.map((label, i) => {
+              const predefinedColors = {
+                  "Graduated from Debrecen": "#2e98f0",
+                  "University Active": "#005a00",
+                  "No Record": "#000000",
+                  "University Passive": "#ff7800",
+                  "Did not progress to Debrecen": "#ff8080",
+                  "Did not graduate from GIS": "#ff8080"
+              };
+              return predefinedColors[label] || `hsl(${i * (360 / labels.length)}, 70%, 50%)`;
+          });
+
+          const ctx = document.getElementById('analyticsChart').getContext('2d');
+          new Chart(ctx, {
+              type: 'doughnut',  // A slight variation for a better look
+              data: {
+                  labels: labels,
+                  datasets: [{
+                      data: values,
+                      backgroundColor: backgroundColors
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                      legend: {
+                          position: 'right'
+                      },
+                      tooltip: {
+                          callbacks: {
+                              label: function(tooltipItem) {
+                                  let value = tooltipItem.raw;
+                                  let total = values.reduce((acc, val) => acc + val, 0);
+                                  let percentage = ((value / total) * 100).toFixed(2);
+                                  return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                              }
+                          }
+                      }
+                  },
+                  animation: {
+                      animateScale: true,
+                      animateRotate: true
+                  }
+              }
+          });
+
+          const tableBody = document.getElementById("chartTableBody");
+          labels.forEach((label, index) => {
+              tableBody.innerHTML += `
+                <tr class="border-b">
+                  <td>${label}</td>
+                  <td>${values[index]}</td>
+                </tr>`;
+          });
+
+          tableBody.innerHTML += `
+            <tr class="bg-gray-100 font-bold">
+              <td class="px-4 py-2">Total Records</td>
+              <td class="px-4 py-2">${totalRecords}</td>
+            </tr>`;
+          tableBody.innerHTML += `
+            <tr class="bg-red-100 font-bold">
+              <td class="px-4 py-2">Excluded Records</td>
+              <td class="px-4 py-2">${excludedRecords}</td>
+            </tr>`;
+
+      } catch (error) {
+          console.error("Error loading data:", error);
+      }
+  });
+</script>
+

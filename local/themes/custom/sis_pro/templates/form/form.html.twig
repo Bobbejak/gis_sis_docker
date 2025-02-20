@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+<form{{ attributes.addClass('entity-form') }}>
+  <div class="form-grid">
+    {{ children }}
+    {% for key, item in children %}
+  {% if key == '#title' %}
+    <p class="debug-title">DEBUG: Title should be here → {{ item }}</p>
+  {% endif %}
+{% endfor %}
+
+  </div>
+</form>

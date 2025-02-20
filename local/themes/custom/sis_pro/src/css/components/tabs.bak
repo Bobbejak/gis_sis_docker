@@ -1,0 +1,18 @@
+@layer components {
+    .tabs {
+      @apply flex gap-4 p-3 rounded-md;
+    }
+
+    ul.tabs{
+        @apply shadow-md p-3;
+    }
+  
+    .tabs a {
+      @apply px-4 py-2 rounded text-gray-800 bg-white hover:bg-gray-200 transition;
+    }
+  
+    .tabs a.is-active {
+      @apply bg-blue-500 text-white font-bold;
+    }
+  }
+  

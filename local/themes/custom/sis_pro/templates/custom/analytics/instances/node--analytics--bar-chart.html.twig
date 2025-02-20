@@ -1,0 +1,22 @@
+{% extends "node--analytics.html.twig" %}
+
+{% block chart %}
+  <canvas id="analyticsChart"></canvas>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const ctx = document.getElementById('analyticsChart').getContext('2d');
+
+        const data = {
+            labels: ['Year 1', 'Year 2', 'Year 3'],
+            datasets: [{
+                label: '{{ node.field_y_axis.value }}',
+                data: [150, 180, 200], // Example data
+                backgroundColor: ['#2E86C1', '#28B463', '#F1C40F'],
+            }]
+        };
+
+        new Chart(ctx, { type: 'bar', data: data });
+    });
+  </script>
+{% endblock %}

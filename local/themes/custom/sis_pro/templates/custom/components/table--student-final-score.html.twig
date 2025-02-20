@@ -1,0 +1,50 @@
+{# ✅ Initialize Final Score Variable Before Loop #}
+{% set final_score = 0 %}
+{% set coursework_weight = 10 %}
+{% set test_weight = 15 %}
+
+{# ✅ Loop Through All Results in the Table #}
+{% for row in results %}
+  {# ✅ Step 1: Extract Raw Values From Views Output #}
+  {% set score_raw = row.columns.field_score.content[0].field_output['#markup']|render|trim %}
+  {% set max_score_raw = row.columns.field_maximum_score.content[0].field_output['#markup']|render|trim %}
+  {% set type_raw = row.columns.field_test_type.content[0].field_output['#markup']|render|trim %}
+
+  {# ✅ Step 2: Remove Unwanted HTML Tags While Keeping Numbers #}
+  {% set score_clean = score_raw|striptags('<table><thead><tbody><tr><th><td>')|trim %}
+  {% set max_score_clean = max_score_raw|striptags('<table><thead><tbody><tr><th><td>')|trim %}
+  {% set type = type_raw|striptags()|trim %}
+
+  {# ✅ Step 3: Extract Only Numeric Values (Preserving Decimals) #}
+  {% set score = score_clean|replace({'[^0-9.]': ''}, 'regex')|default(0)|number_format(2, '.', '') %}
+  {% set max_score = max_score_clean|replace({'[^0-9.]': ''}, 'regex')|default(1)|number_format(2, '.', '') %}
+
+  {# ✅ Step 4: Ensure Safe Math Operations (Avoid Divide By Zero) #}
+  {% if max_score == 0 or max_score == '' %}
+    {% set normalized_score = 0 %}
+  {% else %}
+    {% set normalized_score = (score / max_score) * 100 %}
+  {% endif %}
+
+  {# ✅ Step 5: Apply Correct Weight Based on Test Type #}
+  {% set weight = (type == 'Coursework') ? coursework_weight : test_weight %}
+  {% set weighted_score = (normalized_score * weight) / 100 %}
+
+  {# ✅ Step 6: Accumulate Final Score #}
+  {% set final_score = final_score + weighted_score %}
+{% endfor %}
+
+{# ✅ Add Final Score as a Row Inside the Views Table #}
+<tr class="bg-gray-200 font-bold">
+  <td colspan="{{ header|length - 2 }}" class="px-4 py-2 text-right">Final Score (Weighted & Normalized):</td>
+  <td class="px-4 py-2 text-center">{{ final_score|number_format(2) }}</td>
+</tr>
+
+{# ✅ Debugging Output (REMOVE after testing) #}
+{# <pre>
+  Extracted Score: {{ score }}
+  Extracted Max Score: {{ max_score }}
+  Normalized Score: {{ normalized_score }}
+  Weighted Score: {{ weighted_score }}
+  Running Final Score: {{ final_score }}
+</pre> #}

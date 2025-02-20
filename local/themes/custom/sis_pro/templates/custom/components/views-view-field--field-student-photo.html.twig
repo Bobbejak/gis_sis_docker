@@ -1,0 +1,22 @@
+
+{# Custom Views field template#}
+{% set safe_output = output|striptags %} {# Removes all HTML tags for safe checking. Use for div content or alt text #}
+
+{% set url_array = url('<current>') %} {# Exposes the current page url. Used to obtain the page on which the field is presented. Used to filter with conditional statements  #}
+
+{% set current_url = url_array|join('')|lower %} {# Since the above outputs an array, We use join to convert to string and make it lower case with lower.}
+
+{# Student Photo in student-list view #}
+{% if current_url matches '/student-list/' %}
+  <div class="student-photo">
+    {{ output|raw }}
+  </div>
+{% endif %}
+
+{# Student Photo in student node view #}
+{% if current_url matches '/node/' %}
+  <div class="basic-info-photo">
+    {{ output|raw }}
+  </div>
+{% endif %}
+

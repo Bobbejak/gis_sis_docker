@@ -1,0 +1,34 @@
+name: sis_pro
+type: theme
+'base theme': stable9
+version: 1.0.0
+libraries:
+  - sis_pro/base
+  - sis_pro/messages
+  - core/normalize
+  - sis_pro/global-styling
+  - sis_pro/global-scripts
+  - sis_pro/datatables
+libraries-extend:
+  user/drupal.user:
+    - sis_pro/user
+  core/drupal.dropbutton:
+    - sis_pro/dropbutton
+  core/drupal.dialog:
+    - sis_pro/dialog
+  file/drupal.file:
+    - sis_pro/file
+  core/drupal.progress:
+    - sis_pro/progress
+description: ''
+core_version_requirement: ^10
+generator: 'starterkit_theme:10.4.0'
+regions:
+  top_bar: 'Top Bar'
+  branding: 'Branding/Header'
+  breadcrumbs: 'Breadcrumbs'
+  messages: 'Messages'
+  sidebar_left: 'Left Sidebar'
+  content: 'Main Content'
+  sidebar_right: 'Secondary Sidebar'
+  footer: 'Footer'

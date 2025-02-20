@@ -8,17 +8,21 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./modules/custom:/var/www/html/modules/custom
-      - ./modules/contrib:/var/www/html/modules/contrib
-      - ./db_backups:/db_backups
-      - ./themes/custom:/var/www/html/themes/custom
-      - ./themes/contrib:/var/www/html/themes/contrib
-      - ./config/sync:/var/www/html/config/sync
-      - ./translations:/var/www/html/sites/default/files/translations
-      - ./sites/default/files:/var/www/html/sites/default/files
-      - ./sites/default/settings.php:/var/www/html/sites/default/settings.php
-      - ./sites/default/private:/var/www/html/sites/default/private
-      - ./startup.sh:/startup.sh  # <-- Add this line to map the script
+    # Drupal file storage
+      # Core and custom files
+      - ./drupal/sites/default/settings.php:/var/www/html/sites/default/settings.php
+      - ./drupal/sites/default/private:/var/www/html/sites/default/private
+      - ./drupal/sites/default/files:/var/www/html/sites/default/files
+      # Mods and Themes
+      - ./local/modules/custom:/var/www/html/modules/custom
+      - ./drupal/modules/contrib:/var/www/html/modules/contrib
+      - ./local/themes/custom:/var/www/html/themes/custom
+      - ./drupal/themes/contrib:/var/www/html/themes/contrib
+    # Drupal import files
+      - ./local/import/db_backups:/db_backups
+      - ./local/import/config/sync:/var/www/html/config/sync
+    # Scripts
+      - ./local/startup.sh:/startup.sh  # For startup script
     environment:
       - DRUPAL_DATABASE_HOST=db
       - DRUPAL_DATABASE_NAME=gis_sis
@@ -42,24 +46,6 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - drupal-network
-
-#   tools:
-#     image: drupal:10.4
-#     container_name: drupal_tools
-#     volumes:
-#       - ./modules/custom:/var/www/html/modules/custom
-#       - ./themes/custom:/var/www/html/themes/custom
-#       - ./config/sync:/var/www/html/config/sync
-#       - ./translations:/var/www/html/sites/default/files/translations
-#       - ./sites/default/files:/var/www/html/sites/default/files
-#       - ./sites/default/settings.php:/var/www/html/sites/default/settings.php
-#       - ./sites/default/private:/var/www/html/sites/default/private
-#       - ./startup.sh:/startup.sh  # <-- Add this line to map the script
-#     working_dir: /var/www/html
-#     networks:
-#       - drupal-network
-#     entrypoint: ["tail", "-f", "/dev/null"]  # Keeps the container running
-
 volumes:
   db_data:
 
