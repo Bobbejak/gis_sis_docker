@@ -1,5 +1,7 @@
 # Ignore db_backs and config/sync
 local/import/
+local/db_data
+
 
 # Ignore drupal files
 drupal/sites/

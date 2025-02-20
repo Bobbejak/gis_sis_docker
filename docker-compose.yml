@@ -21,8 +21,11 @@ services:
     # Drupal import files
       - ./local/import/db_backups:/db_backups
       - ./local/import/config/sync:/var/www/html/config/sync
-    # Scripts
-      - ./local/startup.sh:/startup.sh  # For startup script
+    # Scripts/Setup files
+      - ./local/startup_files/startup.sh:/startup.sh  # For startup script
+      - ./local/apache/custom.conf:/etc/apache2/conf-enabled/custom.conf # apache custom setting
+      - ./local/php/php.ini:/usr/local/etc/php/php.ini  # Persistent php.ini
+      - ./local/php/custom.ini:/usr/local/etc/php/conf.d/custom.inisettings # php custom settings
     environment:
       - DRUPAL_DATABASE_HOST=db
       - DRUPAL_DATABASE_NAME=gis_sis
@@ -43,7 +46,9 @@ services:
       MYSQL_PASSWORD: user_240885MP
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - db_data:/var/lib/mysql
+      - ./local/db_data:/var/lib/mysql
+      - ./local/mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf # mysql custom settings
+
     networks:
       - drupal-network
 volumes:
